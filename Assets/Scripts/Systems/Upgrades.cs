@@ -6,10 +6,13 @@ using UnityEngine;
 public class Upgrades : ScriptableObject
 {
     //description
+    
+    public Sprite _icon;
     [TextArea] public string upgradeDescription;
     
     //player upgrades
     public int addMaxHealth;
+    public int addCurrentHealth;
     public float percentMovementSpeed;
     public float percentPickUpRange;
 
@@ -25,5 +28,6 @@ public class Upgrades : ScriptableObject
     public int addMaxPiercing;
     public float percentKnockBack;
     public int addMaxAmmo;
+    
 
 }

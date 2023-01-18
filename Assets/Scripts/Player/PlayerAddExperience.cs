@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerAddExperience : MonoBehaviour
 {
     public static event Action<float> UpdateExperienceUI;
+    public static event Action LevelUp;
 
     private PlayerStats _playerStats;
     
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
-        _playerStats.ExperienceRequired = 10;
+        _playerStats.ExperienceRequired = 10; //remove if there is existing leveling system
     }
     private void OnEnable()
     {
@@ -25,8 +26,15 @@ public class PlayerAddExperience : MonoBehaviour
         if (_playerStats.Experience >= _playerStats.ExperienceRequired)
         {
             _playerStats.Experience = 0;
-            _playerStats.Level++;
-            Debug.Log($"LEVEL: {_playerStats.Level}");
+            IncreaseLevel();
+            
         }
+    }
+
+    public void IncreaseLevel()
+    {
+        _playerStats.Level++;
+        Debug.Log($"LEVEL: {_playerStats.Level}");
+        LevelUp?.Invoke();
     }
 }

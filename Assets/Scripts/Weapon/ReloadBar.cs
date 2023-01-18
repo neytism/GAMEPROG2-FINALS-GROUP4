@@ -51,6 +51,5 @@ public class ReloadBar : MonoBehaviour
     private void ReloadBarStart()
     {
         _playerNoAmmo = true;
-        
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponHolder : MonoBehaviour
 {
     [SerializeField] private GameObject[] _weaponPrefabs;
+    [SerializeField] private GameObject[] _bulletPrefabs;
     [SerializeField] private WeaponType _weaponType;
     private static GameObject _selectedWeaponPrefab;
     private static WeaponController _selectedWeaponType;
@@ -13,6 +14,8 @@ public class WeaponHolder : MonoBehaviour
 
     public static GameObject SelectedWeaponPrefab => _selectedWeaponPrefab;
     public WeaponController SelectedWeaponType => _selectedWeaponType;
+
+    public GameObject SelectedBulletPrefab(int i) => _bulletPrefabs[i];
 
 
 
@@ -26,5 +29,8 @@ public class WeaponHolder : MonoBehaviour
     {
         Pistol,
         GrenadeLauncher
+        //add here new weapon type
     }
 }
+
+//this script hold all weapon and bullet types for referencing

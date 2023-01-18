@@ -16,3 +16,5 @@ public class DamageTextLife : MonoBehaviour
         gameObject.SetActive(false);
     }
 }
+
+// can put animation in text

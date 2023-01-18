@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats _playerStats;
     private PlayerHurt _playerHurt;
     private float _moveSpeed;
+    
 
     [SerializeField] private Rigidbody2D _rb;
     private Vector2 _moveDirection;
@@ -48,13 +49,16 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = new Vector2(moveX, moveY).normalized;
     }
 
+
     public void SetWalkingSpeed()
     {
+        //Player slows down if shooting
         _moveSpeed = _playerStats.WalkingSpeed;
     }
     
     public void SetRunningSpeed()
     {
+        //sets default speed if not shooting
         _moveSpeed = _playerStats.RunningSpeed;
     }
 

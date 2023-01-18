@@ -34,8 +34,9 @@ public class PlayerAim : MonoBehaviour
         FlipWeapon();
     }
 
-    private void FlipWeapon()
+    private void FlipWeapon()   
     {
+        //flip weapon image if aiming to left or right
         Vector3 aimLocalScale = Vector3.one;
         if (aimAngle > 90 || aimAngle < -90)
         {

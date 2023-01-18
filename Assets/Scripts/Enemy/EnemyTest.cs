@@ -46,7 +46,7 @@ public class EnemyTest : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-            if (col.gameObject.tag.Equals("PlayerBullet")) 
+            if (col.gameObject.tag.Equals("PlayerNormalBullet")  || col.gameObject.tag.Equals("PlayerExplosionRadius")) 
             {
                 if(_isHit) return;
                 _isHit = true;
@@ -63,7 +63,6 @@ public class EnemyTest : MonoBehaviour
                 }
                 
                 ShowDamage(_weapon.damage.ToString());
-                Debug.Log("enemy hit");
 
                 _isHit = false;
             }

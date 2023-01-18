@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - DamageText
   - Experience
+  - PlayerNormalBullet
+  - PlayerExplosionRadius
   layers:
   - Default
   - TransparentFX
@@ -22,8 +24,8 @@ TagManager:
   - Enemy
   - Experience
   - 
-  - 
-  - 
+  - PlayerNormalBullet
+  - PlayerExplosionRadius
   - 
   - 
   - 

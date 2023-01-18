@@ -7,8 +7,6 @@ public class PlayerShoot : MonoBehaviour
 {
     public static event Action shoot;
     public static event Action stopShoot;
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Fire1"))
@@ -17,7 +15,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         if (Input.GetButtonUp("Fire1"))
-        { 
+        {
             stopShoot?.Invoke();
         }
     }

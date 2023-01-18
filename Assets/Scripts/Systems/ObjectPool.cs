@@ -76,6 +76,7 @@ public class ObjectPool : MonoBehaviour
     
     public GameObject GetObjectUI(GameObject objectToPool, Transform pos)
     {
+        //this function is for UI loading
         _objectToPool = objectToPool;
 
         if (_objectsPoolUI.Count > 0)

@@ -24,6 +24,7 @@ public class UserInterfaceManager : MonoBehaviour
     {
         PlayerAddExperience.UpdateExperienceUI += UpdateXPBar;
         PlayerHealth.UpdateHealthUI += UpdateHealthBar;
+        PlayerApplyUpgrades.UpgradeApplied += UpdateHealthBar;
     }
 
     private void Start()

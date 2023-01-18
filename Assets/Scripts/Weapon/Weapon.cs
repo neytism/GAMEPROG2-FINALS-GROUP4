@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Weapon")]
 public class Weapon : ScriptableObject
@@ -19,6 +20,11 @@ public class Weapon : ScriptableObject
     public float knockBackForce = 2f;
     public int maxAmmo = 10;
     public int currentAmmo;
+
+    private void Awake()
+    {
+        currentAmmo = maxAmmo;
+    }
 
     public enum BulletType
     {

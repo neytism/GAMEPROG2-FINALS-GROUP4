@@ -8,15 +8,18 @@ public class PlayerHealth : MonoBehaviour
 {
     public static event Action UpdateHealthUI;
     private PlayerStats _playerStats;
+    private PlayerHurt _playerHurt;
 
     private void OnEnable()
     {
         UpdateHealthUI += CheckHealth;
+        PlayerHurt.ReduceHealth += ReduceHealth;
     }
 
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _playerHurt = GetComponent<PlayerHurt>();
     }
 
     // Update is called once per frame
@@ -59,4 +62,15 @@ public class PlayerHealth : MonoBehaviour
             _playerStats.MaxHealth = 30;
         }
     }
+
+    private void ReduceHealth()
+    {
+        if (!_playerHurt.IsKnockBack)
+        {
+            _playerStats.CurrentHealth--;
+            UpdateHealthUI?.Invoke();
+        }
+    }
+    
+    
 }

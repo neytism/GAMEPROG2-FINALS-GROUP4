@@ -9,8 +9,8 @@ public class WeaponController : MonoBehaviour
 {
     public static event Action WeaponReload;
     public static event Action StartShooting;
-    
-    [SerializeField] private GameObject[] _bulletPrefab;
+
+    private WeaponHolder _weaponHolder;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Transform _firePoint;
     
@@ -30,6 +30,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
+        _weaponHolder = FindObjectOfType<WeaponHolder>();
         _weapon.currentAmmo = _weapon.maxAmmo;
     }
     
@@ -60,42 +61,40 @@ public class WeaponController : MonoBehaviour
         WeaponReload?.Invoke();
         if(_weapon.currentAmmo == _weapon.maxAmmo) return;
         reloading = true;
-        //You can use a coroutine to make reload animation
         StartCoroutine(ReloadCoroutine());
     }
 
     private IEnumerator ReloadCoroutine()
     {
-        Debug.Log("Reloading");
+        //can put here animation for reloading
         yield return new WaitForSeconds(_weapon.reloadSpeed);
-        Debug.Log("Reload Complete");
         _weapon.currentAmmo = _weapon.maxAmmo;
         reloading = false;
     }
 
     private void InstanceBullet()
     {
-            for (int i = 0; i < _weapon.projectiles; i++)
-            {
-                float angle = i * _weapon.spreadAngle - (_weapon.projectiles - 1) / 2 * _weapon.spreadAngle;
-                GameObject bullet = ObjectPool.Instance.GetObject(_bulletPrefab[(int)_weapon.bulletType], _firePoint.position);
-                bullet.SetActive(true);
+        //used looping for equal angle per bullet if multiple projectiles
+        for (int i = 0; i < _weapon.projectiles; i++)
+        {
+            float angle = i * _weapon.spreadAngle - (_weapon.projectiles - 1) / 2 * _weapon.spreadAngle;
+            GameObject bullet = ObjectPool.Instance.GetObject(_weaponHolder.SelectedBulletPrefab((int)_weapon.bulletType), _firePoint.position);
+            bullet.SetActive(true);
                 
-                bullet.GetComponent<Rigidbody2D>().AddForce(RotateSpread(_firePoint.right, angle) * _weapon.bulletSpeed,ForceMode2D.Impulse);
-            }
+            bullet.GetComponent<Rigidbody2D>().AddForce(RotateSpread(_firePoint.right, angle) * _weapon.bulletSpeed,ForceMode2D.Impulse);
+        }
     }
     
-    Vector3 RotateSpread(Vector3 start, float angle) //rotates vector3.up for weapon spread
+    Vector3 RotateSpread(Vector3 firePoint, float angle) //rotates vector3.up for weapon spread
     {
-        // if you know start will always be normalized, can skip this step
-        start.Normalize();
+        firePoint.Normalize();
 
-        Vector3 axis = Vector3.Cross(start, Vector3.right);
+        Vector3 axis = Vector3.Cross(firePoint, Vector3.right);
 
         // handle case where start is colinear with up
         if (axis == Vector3.zero) axis = Vector3.right;
 
-        return Quaternion.AngleAxis(angle, axis) * start;
+        return Quaternion.AngleAxis(angle, axis) * firePoint;
     }
 
    

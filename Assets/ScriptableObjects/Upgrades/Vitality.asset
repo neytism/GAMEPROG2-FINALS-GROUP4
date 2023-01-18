@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: Vitality
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
   upgradeDescription: Max HP +1
   addMaxHealth: 1
+  addCurrentHealth: 1
   percentMovementSpeed: 0
   percentPickUpRange: 0
   ChangeBulletType: 0

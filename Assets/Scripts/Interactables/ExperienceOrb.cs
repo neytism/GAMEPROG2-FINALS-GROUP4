@@ -16,3 +16,6 @@ public class ExperienceOrb : MonoBehaviour
         }
     }
 }
+
+//script must be attached to xp orb object
+//every enemy drops this

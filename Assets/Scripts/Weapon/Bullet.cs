@@ -28,8 +28,11 @@ public class Bullet : MonoBehaviour
                 isColliding = true;
                 if (_currentPierces >= _maxPierces)
                 {
+                    
                     DeactivateBullet();
                 }
+
+                Debug.Log("Enemy pierced");
                 _currentPierces++;
             }
         }
@@ -41,7 +44,6 @@ public class Bullet : MonoBehaviour
         if (col.gameObject.tag.Equals("Enemy"))
         {
             isColliding = false;
-            Debug.Log($"Pierced {_currentPierces}");
         }
     }
 

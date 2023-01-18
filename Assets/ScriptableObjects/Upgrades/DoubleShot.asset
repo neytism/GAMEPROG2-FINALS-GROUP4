@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: DoubleShot
   m_EditorClassIdentifier: 
-  upgradeDescription: 
+  _icon: {fileID: 0}
+  upgradeDescription: 'Projectiles +1
+
+    Bullet Damage -10%'
   addMaxHealth: 0
   percentMovementSpeed: 0
   percentPickUpRange: 0
   ChangeBulletType: 0
   addFlatDamage: 0
-  percentDamage: 0
+  percentDamage: -0.05
   percentFireRate: 0
   percentReloadSpeed: 0
   percentBulletSpeed: 0
   percentSpreadAngle: 0
-  addProjectiles: 0
+  addProjectiles: 1
   addMaxPiercing: 0
   percentKnockBack: 0
   addMaxAmmo: 0
