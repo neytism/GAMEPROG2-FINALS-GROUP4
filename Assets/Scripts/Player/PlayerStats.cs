@@ -36,6 +36,7 @@ public class PlayerStats : MonoBehaviour
 
     public float MovementSpeed
     {
+        get => _movementSpeed;
         set => _movementSpeed = value;
     }
     

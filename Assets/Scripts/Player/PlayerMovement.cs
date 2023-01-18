@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private PlayerStats _playerStats;
+    private PlayerHurt _playerHurt;
     private float _moveSpeed;
 
     [SerializeField] private Rigidbody2D _rb;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _playerHurt = GetComponent<PlayerHurt>();
         _moveSpeed = _playerStats.RunningSpeed;
     }
 
@@ -32,7 +34,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
+        if (!_playerHurt.IsKnockBack)
+        {
+            _rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
+        }
+       
     }
 
     private void MovementInput()

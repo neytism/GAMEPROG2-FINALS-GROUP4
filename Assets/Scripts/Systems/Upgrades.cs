@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades")]
 public class Upgrades : ScriptableObject
 {
-    public string upgradeDescription;
+    //description
+    [TextArea] public string upgradeDescription;
     
     //player upgrades
     public int addMaxHealth;

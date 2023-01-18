@@ -7,6 +7,9 @@ public class PlayerHurt : MonoBehaviour
 {
     
     private bool _isKnockBack = false;
+
+    public bool IsKnockBack => _isKnockBack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,7 @@ public class PlayerHurt : MonoBehaviour
         _isKnockBack = true;
         Vector2 knockbackDirection = (transform.position - sender.position).normalized;
         gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 20, ForceMode2D.Impulse);
-        StartCoroutine(StopKnockback(.1f));
+        StartCoroutine(StopKnockback(.075f));
     }
     
     IEnumerator StopKnockback(float duration)
