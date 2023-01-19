@@ -56,7 +56,7 @@ public class ExperienceOrb : MonoBehaviour
         Vector2 direction = _player.transform.position - transform.position;
         direction.Normalize();
 
-        transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, 10 * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
     }
 }
 

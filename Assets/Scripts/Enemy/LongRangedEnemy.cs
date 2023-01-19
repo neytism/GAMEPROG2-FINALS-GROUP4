@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,15 @@ public class LongRangedEnemy : MonoBehaviour
     public Transform enemyFirePoint;
     public float enemyFireForce;
 
+    private float _distanceToPlayer;
+    [SerializeField] private GameObject _lineRenderer;
+    private float _laserLength;
+    
+    private void OnEnable()
+    {
+        _lineRenderer.SetActive(false);
+    }
+
     void Start()
     {
         _target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
@@ -32,6 +42,7 @@ public class LongRangedEnemy : MonoBehaviour
     {
         Chase();
         Fire();
+        ChangeLaserLength();
     }
     
     private void FixedUpdate()
@@ -43,19 +54,19 @@ public class LongRangedEnemy : MonoBehaviour
     {
         Vector2 direction = _target.position - transform.position;
         direction.Normalize();
-        
+        _distanceToPlayer = Vector2.Distance(transform.position, _target.position);
         if (!_kb.isKnockBack)
         {
             
-            if(Vector2.Distance(transform.position, _target.position) > stoppingRange)
+            if(_distanceToPlayer > stoppingRange)
             {
                 // If enemy is far away, he moves closer.
                 transform.position = Vector2.MoveTowards(transform.position, _target.position, speed * Time.deltaTime);
-            }else if(Vector2.Distance(transform.position, _target.position) < stoppingRange && Vector2.Distance(transform.position, _target.position) > retreatRange)
+            }else if(_distanceToPlayer < stoppingRange && Vector2.Distance(transform.position, _target.position) > retreatRange)
             {
                 // If enemy is close enough to the player, enemy stops.
                 transform.position = this.transform.position;
-            }else if (Vector2.Distance(transform.position, _target.position) < retreatRange)
+            }else if (_distanceToPlayer < retreatRange)
             {
                 // If player gets closen the gap of the retreat range, the enemy move farther away.
                 transform.position = Vector2.MoveTowards(transform.position, _target.position, -speed * Time.deltaTime);
@@ -69,15 +80,28 @@ public class LongRangedEnemy : MonoBehaviour
         
         if(btwShotInterval <= 0)
         {
-            GameObject bullet = ObjectPool.Instance.GetObject(projectile, enemyFirePoint.position);
-            bullet.SetActive(true);
-            bullet.GetComponent<Rigidbody2D>().AddForce(enemyFirePoint.right * enemyFireForce,ForceMode2D.Impulse);
+            ShowLaser();
             btwShotInterval = startBtwShotInterval;  // adds interval between shots
         } else
         {
             btwShotInterval -= Time.deltaTime;
         }
         
+    }
+
+    private void ShowLaser()
+    {
+        _lineRenderer.SetActive(true);
+        StartCoroutine(HideLaser());
+    }
+    
+    IEnumerator HideLaser()
+    {
+        yield return new WaitForSeconds(.5f);
+        GameObject bullet = ObjectPool.Instance.GetObject(projectile, enemyFirePoint.position);
+        bullet.SetActive(true);
+        bullet.GetComponent<Rigidbody2D>().AddForce(enemyFirePoint.right * enemyFireForce,ForceMode2D.Impulse);
+        _lineRenderer.SetActive(false);
     }
     
     //aim control
@@ -103,5 +127,11 @@ public class LongRangedEnemy : MonoBehaviour
             aimLocalScale.y = +1f;
         }
         aimTransform.localScale = aimLocalScale;
+    }
+
+    private void ChangeLaserLength()
+    {
+        Vector3 endPos = _lineRenderer.transform.position + (_lineRenderer.transform.right * _distanceToPlayer);
+        _lineRenderer.GetComponent<LineRenderer>().SetPositions(new Vector3[] {_lineRenderer.transform.position,endPos});
     }
 }

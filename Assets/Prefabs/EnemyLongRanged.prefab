@@ -253,6 +253,7 @@ MonoBehaviour:
   aimTransform: {fileID: 7118600233559382828}
   enemyFirePoint: {fileID: 3403405463616454590}
   enemyFireForce: 10
+  _lineRenderer: {fileID: 5915473378880687722}
 --- !u!1001 &2594380799840195882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,6 +309,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6086147383694107563, guid: d444b71e19ce77041afa83cf819bcbb3, type: 3}
+      propertyPath: m_Name
+      value: laser
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d444b71e19ce77041afa83cf819bcbb3, type: 3}
 --- !u!4 &3403405463616454590 stripped
@@ -318,5 +323,10 @@ Transform:
 --- !u!4 &3403405464051513254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 809034585604645516, guid: d444b71e19ce77041afa83cf819bcbb3, type: 3}
+  m_PrefabInstance: {fileID: 2594380799840195882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5915473378880687722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8509248193125882688, guid: d444b71e19ce77041afa83cf819bcbb3, type: 3}
   m_PrefabInstance: {fileID: 2594380799840195882}
   m_PrefabAsset: {fileID: 0}

@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     private PlayerStats _playerStats;
     private PlayerHurt _playerHurt;
 
+    private float _holdTime;
+
     private void OnEnable()
     {
         UpdateHealthUI += CheckHealth;
@@ -25,10 +27,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Q))
         {
-            _playerStats.CurrentHealth--;
-            UpdateHealthUI?.Invoke();
+            _holdTime += Time.deltaTime;
+            if (_holdTime >= 2)
+            {
+                AddHealth(1);
+                _holdTime = 0;
+            }
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -70,6 +76,12 @@ public class PlayerHealth : MonoBehaviour
             _playerStats.CurrentHealth--;
             UpdateHealthUI?.Invoke();
         }
+    }
+
+    private void AddHealth(int amount)
+    {
+        _playerStats.CurrentHealth += amount;
+        UpdateHealthUI?.Invoke();
     }
     
     

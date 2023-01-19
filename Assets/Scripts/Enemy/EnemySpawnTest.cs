@@ -8,7 +8,7 @@ public class EnemySpawnTest : MonoBehaviour
     [SerializeField] private float _timeInterval = 1f;
 
     //public GameObject[] enemies;  CAN BE USED FOR MULTIPLE ENEMIES
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject[] _enemyPrefabs;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class EnemySpawnTest : MonoBehaviour
         Vector2 spawnPos = FindObjectOfType<PlayerMovement>().transform.position;
         spawnPos += Random.insideUnitCircle.normalized * _spawnRadius;
         
-        GameObject enemy = ObjectPool.Instance.GetObject(_enemyPrefab, spawnPos);
+        GameObject enemy = ObjectPool.Instance.GetObject(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], spawnPos);
         enemy.SetActive(true);
         
         yield return new WaitForSeconds(_timeInterval);
