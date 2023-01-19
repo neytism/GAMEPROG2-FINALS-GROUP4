@@ -27,6 +27,7 @@ public class DebugText : MonoBehaviour
     {
         statsText = $"Level: {stats.Level}\n" +
                     $"XP: {stats.Experience} out of {stats.ExperienceRequired}\n" +
+                    $"Energy Orbs: {stats.EnergyOrbs}\n" +
                     $"Max Health: {stats.MaxHealth}\n" +
                     $"Current Health: {stats.CurrentHealth}\n" +
                     $"Position: {stats.GetComponent<Transform>().position.normalized}\n" +
@@ -63,3 +64,16 @@ public class DebugText : MonoBehaviour
 }
 
 //this script is for debugging
+
+//TODO: save system
+//TODO: Default values for weapons that gets values from perma upgrades
+//TODO: Main menu
+//TODO: Generative map
+//TODO: Drop Chance
+//TODO: Leveling Scaling
+//TODO: Audio Designing
+//TODO: Graphics
+//TODO: Gfx particles
+//TODO: Pause menu
+//TODO: Enemy will move away if healing, or dead, or leveled up
+//TODO: Animation system

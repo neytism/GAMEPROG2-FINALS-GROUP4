@@ -23,6 +23,10 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private Image[] _hearts;
     [SerializeField] private Sprite _fullHeart;
     [SerializeField] private Sprite _emptyHeart;
+    
+    //Permanent Upgrades Panel
+    [SerializeField] private GameObject _permaUpgradePanel;
+    [SerializeField] private GameObject _upgradePanel;
 
     private void OnEnable()
     {
@@ -30,6 +34,9 @@ public class UserInterfaceManager : MonoBehaviour
         PlayerHealth.UpdateHealthUI += UpdateHealthBar;
         PlayerApplyUpgrades.UpgradeApplied += UpdateHealthBar;
         PlayerLevel.UpdateLevelTextUI += UpdateLevelText;
+        PlayerInteraction.InteractedWithEnergy += ShowPermaUpgradesPanel;
+        UpgradeHolder.ShowUpgradePanel += ShowUpgradePanel;
+        PlayerApplyUpgrades.UpgradeApplied += HideUpgradePanel;
     }
 
     private void Start()
@@ -74,6 +81,30 @@ public class UserInterfaceManager : MonoBehaviour
                 _hearts[i].enabled = false;
             }
         }
+    }
+
+    private void ShowPermaUpgradesPanel()
+    {
+        Time.timeScale = 0f;
+        _permaUpgradePanel.SetActive(true);
+    }
+    
+    public void HidePermaUpgradesPanel()
+    {
+        Time.timeScale = 1f;
+        _permaUpgradePanel.SetActive(false);
+    }
+    
+    private void HideUpgradePanel()
+    {
+        Time.timeScale = 1f;
+        _upgradePanel.SetActive(false);
+    }
+
+    private void ShowUpgradePanel()
+    {
+        Time.timeScale = 0f;
+        _upgradePanel.SetActive(true);
     }
 
 }

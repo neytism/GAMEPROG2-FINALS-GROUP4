@@ -14,6 +14,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Weapon _currentWeapon;
     [SerializeField] private float _pickupRange;
 
+    private float _energyOrbs;
+
+    
+
     private float _experience;
     private float _experienceRequired;
 
@@ -22,6 +26,12 @@ public class PlayerStats : MonoBehaviour
     
     #region GetSet
 
+    public float EnergyOrbs
+    {
+        get => _energyOrbs;
+        set => _energyOrbs = value;
+    }
+    
     public int MaxHealth
     {
         get => _maxHealth;

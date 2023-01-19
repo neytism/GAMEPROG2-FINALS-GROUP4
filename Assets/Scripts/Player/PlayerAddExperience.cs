@@ -17,7 +17,7 @@ public class PlayerAddExperience : MonoBehaviour
     }
     private void OnEnable()
     {
-        ExperienceOrb.ExperienceCollected += AddExperience;
+        Orbs.ExperienceCollected += AddExperience;
     }
     private void AddExperience(float experience)
     {

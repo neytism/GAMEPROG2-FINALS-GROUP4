@@ -17,6 +17,9 @@ TagManager:
   - EnemyBullet
   - EnemyRanged
   - EnemyLongRanged
+  - PermaUpgradeStation
+  - PermaUpgradeDescription
+  - EnergyOrb
   layers:
   - Default
   - TransparentFX
@@ -35,8 +38,8 @@ TagManager:
   - PickUpRadius
   - PickUpTrigger
   - EnemyBullet
-  - 
-  - 
+  - PermaUpgradeStation
+  - EnergyOrb
   - 
   - 
   - 

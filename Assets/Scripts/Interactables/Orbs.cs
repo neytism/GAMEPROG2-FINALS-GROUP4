@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceOrb : MonoBehaviour
+public class Orbs : MonoBehaviour
 {
     public static event Action<float> ExperienceCollected;
+    public static event Action EnergyOrbCollected;
+    
     public float xpAmount = 1;
     
     public float speed;
@@ -31,9 +33,17 @@ public class ExperienceOrb : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("PickUpTrigger"))
         {
-            ExperienceCollected?.Invoke(xpAmount);
+            if (this.gameObject.tag.Equals("Experience"))
+            {
+                ExperienceCollected?.Invoke(xpAmount);
+                gameObject.GetComponent<TrailRenderer>().Clear();
+            } else if (this.gameObject.tag.Equals("EnergyOrb"))
+            {
+                EnergyOrbCollected?.Invoke();
+            }
+            
             gameObject.SetActive(false);
-            gameObject.GetComponent<TrailRenderer>().Clear();
+            
         }
         
         if (col.gameObject.tag.Equals("PickUpRadius"))

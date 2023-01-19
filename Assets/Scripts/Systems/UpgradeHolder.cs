@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class UpgradeHolder : MonoBehaviour
 {
+    public static event Action ShowUpgradePanel;
+    
     [SerializeField] private UpgradeSelectionBox[] _upgradeSelectionBoxes;
     [SerializeField] private Sprite[] _icons;
     [SerializeField] private Upgrades[] _upgrades;
@@ -21,7 +23,6 @@ public class UpgradeHolder : MonoBehaviour
     private void OnEnable()
     {
         PlayerLevel.LevelUp += GenerateUpgrades;
-        PlayerApplyUpgrades.UpgradeApplied += HidePanel;
     }
 
     public void GenerateUpgrades()
@@ -63,20 +64,10 @@ public class UpgradeHolder : MonoBehaviour
         }
 
         
-        ShowPanel();
+        ShowUpgradePanel?.Invoke();
     }
 
-    private void HidePanel()
-    {
-        Time.timeScale = 1f;
-        _holder.SetActive(false);
-    }
-
-    private void ShowPanel()
-    {
-        Time.timeScale = 0f;
-        _holder.SetActive(true);
-    }
+    
     
 }
 

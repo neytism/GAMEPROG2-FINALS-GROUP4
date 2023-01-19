@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Upgrades")]
+[CreateAssetMenu(menuName = "Upgrades/Normal Upgrades")]
 public class Upgrades : ScriptableObject
 {
     //description
-    
     public Sprite _icon;
     [TextArea] public string upgradeDescription;
     
