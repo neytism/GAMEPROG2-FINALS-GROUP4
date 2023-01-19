@@ -10,7 +10,7 @@ public class EnemyKnockBack : MonoBehaviour
     private Weapon _weapon;
     private Transform _player;
 
-    private void Awake()
+    private void Start()
     {
         _weapon = FindObjectOfType<WeaponController>().Weapon;
         _player = FindObjectOfType<PlayerMovement>().transform;

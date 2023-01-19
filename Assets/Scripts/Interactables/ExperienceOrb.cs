@@ -33,6 +33,7 @@ public class ExperienceOrb : MonoBehaviour
         {
             ExperienceCollected?.Invoke(xpAmount);
             gameObject.SetActive(false);
+            gameObject.GetComponent<TrailRenderer>().Clear();
         }
         
         if (col.gameObject.tag.Equals("PickUpRadius"))

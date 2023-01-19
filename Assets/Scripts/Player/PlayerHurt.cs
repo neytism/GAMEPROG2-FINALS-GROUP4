@@ -24,7 +24,7 @@ public class PlayerHurt : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag.Equals("Enemy") && !_isInvincible)
+        if ((col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile") || col.gameObject.tag.Equals("EnemyBullet")) && !_isInvincible)
         {
             ReduceHealth?.Invoke();
             KnockBack(col.gameObject.GetComponent<Transform>());

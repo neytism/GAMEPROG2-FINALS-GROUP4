@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag.Equals("Enemy"))
+        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile"))
         {
             if (!isColliding)
             {
