@@ -39,9 +39,17 @@ public class EnemyProjectile : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag.Equals("PlayerNormalBullet") || col.gameObject.tag.Equals("PlayerExplodingBullet"))
+        {
+            DeactivateProjectile();
+        }
+    }
+
     IEnumerator ProjectileLife()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(20);
         DeactivateProjectile();
     }
 

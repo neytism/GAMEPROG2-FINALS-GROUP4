@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAddExperience : MonoBehaviour
 {
     public static event Action<float> UpdateExperienceUI;
-    public static event Action LevelUp;
+    public static event Action IncreasePlayerLevel;
 
     private PlayerStats _playerStats;
     
@@ -26,15 +26,7 @@ public class PlayerAddExperience : MonoBehaviour
         if (_playerStats.Experience >= _playerStats.ExperienceRequired)
         {
             _playerStats.Experience = 0;
-            IncreaseLevel();
-            
+            IncreasePlayerLevel?.Invoke();
         }
-    }
-
-    public void IncreaseLevel()
-    {
-        _playerStats.Level++;
-        Debug.Log($"LEVEL: {_playerStats.Level}");
-        LevelUp?.Invoke();
     }
 }

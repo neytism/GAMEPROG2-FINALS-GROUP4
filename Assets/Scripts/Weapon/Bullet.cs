@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int _maxPierces;
-    private int _currentPierces;
+    public int maxPierces;
+    public int currentPierces;
     private bool isColliding;
 
     private Rigidbody2D rb;
@@ -14,8 +14,8 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         isColliding = false;
-        _currentPierces = 1;
-        _maxPierces = FindObjectOfType<WeaponHolder>().SelectedWeaponType.Weapon.maxPiercing;
+        currentPierces = 1;
+        maxPierces = FindObjectOfType<WeaponHolder>().SelectedWeaponType.Weapon.maxPiercing;
         StartCoroutine(BulletLife(gameObject));
     }
     
@@ -26,14 +26,13 @@ public class Bullet : MonoBehaviour
             if (!isColliding)
             {
                 isColliding = true;
-                if (_currentPierces >= _maxPierces)
+                if (currentPierces >= maxPierces)
                 {
-                    
                     DeactivateBullet();
                 }
 
                 Debug.Log("Enemy pierced");
-                _currentPierces++;
+                currentPierces++;
             }
         }
         

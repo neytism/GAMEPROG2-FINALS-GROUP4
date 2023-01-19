@@ -26,7 +26,7 @@ public class DebugText : MonoBehaviour
     void Update()
     {
         statsText = $"Level: {stats.Level}\n" +
-                    $"XP: {stats.Experience}" +
+                    $"XP: {stats.Experience} out of {stats.ExperienceRequired}\n" +
                     $"Max Health: {stats.MaxHealth}\n" +
                     $"Current Health: {stats.CurrentHealth}\n" +
                     $"Position: {stats.GetComponent<Transform>().position.normalized}\n" +

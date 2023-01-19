@@ -23,4 +23,4 @@ MonoBehaviour:
   maxPiercing: 1
   knockBackForce: 0
   maxAmmo: 6
-  currentAmmo: 4
+  currentAmmo: 6

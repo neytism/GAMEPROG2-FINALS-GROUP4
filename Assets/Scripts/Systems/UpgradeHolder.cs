@@ -20,7 +20,7 @@ public class UpgradeHolder : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerAddExperience.LevelUp += GenerateUpgrades;
+        PlayerLevel.LevelUp += GenerateUpgrades;
         PlayerApplyUpgrades.UpgradeApplied += HidePanel;
     }
 

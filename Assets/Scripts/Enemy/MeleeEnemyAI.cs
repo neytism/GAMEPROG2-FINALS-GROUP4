@@ -4,21 +4,39 @@ using UnityEngine;
 
 public class MeleeEnemyAI : MonoBehaviour
 {
-    public float speed;
-    public float stoppingRange;
-
+    [SerializeField] private float _speed = 1;
     private Transform target;
+    private EnemyKnockBack _kb;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
+        _kb = GetComponent<EnemyKnockBack>();
     }
 
     private void Update()
     {
-        if(Vector2.Distance(transform.position, target.position) > stoppingRange)
+        Chase();
+    }
+    
+    public void Chase() //follow player 
+    {
+        Vector2 direction = target.position - transform.position;
+        direction.Normalize();
+        
+        if (!_kb.isKnockBack)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+        }
+        
+    }
+    
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player")) 
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Chase();
         }
     }
 }

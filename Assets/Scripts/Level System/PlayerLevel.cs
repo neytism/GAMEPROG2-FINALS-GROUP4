@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,33 +7,30 @@ using TMPro;
 
 public class PlayerLevel : MonoBehaviour
 {
-    public int level;
+    
 
-    public int currExp;
-    public int maxExp;
+    public static event Action LevelUp;
+    public static event Action<int> UpdateLevelTextUI;
+    
+    private PlayerStats _playerStats;
 
-    public Slider expBar;
 
-    public TextMeshProUGUI expSliderDisplay, levelText;
-    public void Update()
+    private void Awake()
     {
-        ExperienceSliderUI();
-
-        while (currExp >= maxExp)
-        {
-            currExp -= maxExp;
-            level++;
-            maxExp += maxExp / 5;
-
-            levelText.text = "Level " + level.ToString();
-        }
+        _playerStats = GetComponent<PlayerStats>();
+        _playerStats.Level = 1;
     }
-    public void ExperienceSliderUI()
-    {
-        expBar.value = currExp;
-        expBar.maxValue = maxExp;
 
-        expSliderDisplay.text = currExp + " / " + maxExp;
+    private void OnEnable()
+    {
+        PlayerAddExperience.IncreasePlayerLevel += IncreaseLevel;
+    }
+
+    public void IncreaseLevel()
+    {
+        _playerStats.Level++;
+        LevelUp?.Invoke();
+        UpdateLevelTextUI?.Invoke(_playerStats.Level);
     }
 
 }

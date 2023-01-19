@@ -12,6 +12,8 @@ TagManager:
   - PlayerNormalBullet
   - PlayerExplosionRadius
   - EnemyProjectile
+  - PickUpRadius
+  - PickUpTrigger
   layers:
   - Default
   - TransparentFX
@@ -27,8 +29,8 @@ TagManager:
   - EnemyProjectile
   - PlayerNormalBullet
   - PlayerExplosionRadius
-  - 
-  - 
+  - PickUpRadius
+  - PickUpTrigger
   - 
   - 
   - 

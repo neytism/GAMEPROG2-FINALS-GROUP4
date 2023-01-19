@@ -21,3 +21,6 @@ MonoBehaviour:
   spreadAngle: 5
   projectiles: 1
   maxPiercing: 1
+  knockBackForce: 2
+  maxAmmo: 10
+  currentAmmo: 6

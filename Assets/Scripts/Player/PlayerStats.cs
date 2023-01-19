@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
     private float _experienceRequired;
 
     
-    private float _level;
+    private int _level;
     
     #region GetSet
 
@@ -74,7 +74,7 @@ public class PlayerStats : MonoBehaviour
         set => _experienceRequired = value;
     }
 
-    public float Level
+    public int Level
     {
         get => _level;
         set => _level = value;

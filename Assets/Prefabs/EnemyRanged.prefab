@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: -4865691043591873743}
   - component: {fileID: 1665970104229448225}
   - component: {fileID: 4762814512228398313}
-  - component: {fileID: -7970478142886228981}
+  - component: {fileID: 109803149727164105}
   m_Layer: 9
-  m_Name: EnemyMelee
+  m_Name: EnemyRanged
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  m_Color: {r: 0.6226415, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -196,11 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dfc5e19c64fa44fa4dab9b8c418fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 20
+  _health: 25
   _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 3835979998573273738}
---- !u!114 &-7970478142886228981
+--- !u!114 &109803149727164105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +209,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8220582721900145697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f128c7b9947664aa548fb7e15a42b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 938e1ae3b673d864aa231cbb9320402b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  speed: 1
+  stoppingRange: 4
+  retreatRange: 2
+  startBtwShotInterval: 5
+  projectile: {fileID: 1379538315089016479, guid: 0179c0af866c14b45b27ace15432e713, type: 3}
