@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAddExperience : MonoBehaviour
+public class PlayerAddExperience : LevelScaling
 {
     public static event Action<float> UpdateExperienceUI;
     public static event Action IncreasePlayerLevel;
 
-    private PlayerStats _playerStats;
-    
-    private void Awake()
+    private void Update()
     {
         _playerStats = GetComponent<PlayerStats>();
-        _playerStats.ExperienceRequired = 10; //remove if there is existing leveling system
+        _playerStats.ExperienceRequired = CalculateRequiredExp();
     }
+
     private void OnEnable()
     {
         ExperienceOrb.ExperienceCollected += AddExperience;

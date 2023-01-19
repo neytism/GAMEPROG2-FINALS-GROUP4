@@ -7,7 +7,6 @@ using TMPro;
 
 public class PlayerLevel : MonoBehaviour
 {
-    
 
     public static event Action LevelUp;
     public static event Action<int> UpdateLevelTextUI;
