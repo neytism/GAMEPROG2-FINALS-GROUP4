@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3790320750329777352}
   - component: {fileID: -2267280164187660613}
   - component: {fileID: -704458574900397343}
+  - component: {fileID: 2090133122886119222}
   m_Layer: 11
   m_Name: EnemyProjectile
   m_TagString: EnemyProjectile
@@ -131,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 7919915464598023010}
 --- !u!50 &-704458574900397343
@@ -155,6 +155,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2090133122886119222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379538315089016479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a681cf15fd33ea44c87e6fe6567fdafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _energyOrbChance: 0
+  _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
+  _energyOrb: {fileID: 4504724261767804026, guid: 8643745d94f61e14dae73be7af1536c6, type: 3}
 --- !u!1 &5676701189283272111
 GameObject:
   m_ObjectHideFlags: 0

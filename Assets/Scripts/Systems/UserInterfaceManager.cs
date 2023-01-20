@@ -27,7 +27,11 @@ public class UserInterfaceManager : MonoBehaviour
     //Permanent Upgrades Panel
     [SerializeField] private GameObject _permaUpgradePanel;
     [SerializeField] private GameObject _upgradePanel;
-
+    [SerializeField] private TextMeshProUGUI _orbCountText;
+    
+    //counterHUD
+    [SerializeField] private TextMeshProUGUI _ammoCountText;
+    [SerializeField] private TextMeshProUGUI _orbCountTextHUD;
     private void OnEnable()
     {
         PlayerAddExperience.UpdateExperienceUI += UpdateXPBar;
@@ -37,6 +41,9 @@ public class UserInterfaceManager : MonoBehaviour
         PlayerInteraction.InteractedWithEnergy += ShowPermaUpgradesPanel;
         UpgradeHolder.ShowUpgradePanel += ShowUpgradePanel;
         PlayerApplyUpgrades.UpgradeApplied += HideUpgradePanel;
+        WeaponController.UpdateUI += UpdateAmmoCount;
+        PlayerEnergyOrbs.UpdateOrbUI += UpdateOrbCount;
+        PermanentUpgradeContainer.DepositedOrbs += UpdateOrbCount;
     }
 
     private void Start()
@@ -46,6 +53,8 @@ public class UserInterfaceManager : MonoBehaviour
         _XPBar.fillAmount = 0;
         UpdateHealthBar();
         UpdateLevelText(FindObjectOfType<PlayerStats>().Level);
+        UpdateAmmoCount();
+        UpdateOrbCount();
     }
 
     private void UpdateXPBar(float xpGain)
@@ -83,6 +92,17 @@ public class UserInterfaceManager : MonoBehaviour
         }
     }
 
+    private void UpdateAmmoCount()
+    {
+        _ammoCountText.text = _weapon.currentAmmo.ToString();
+    }
+
+    private void UpdateOrbCount()
+    {
+        _orbCountTextHUD.text = _playerStats.EnergyOrbs.ToString();
+        _orbCountText.text = $"{_playerStats.EnergyOrbs} orbs left";
+    }
+
     private void ShowPermaUpgradesPanel()
     {
         Time.timeScale = 0f;
@@ -94,6 +114,7 @@ public class UserInterfaceManager : MonoBehaviour
         Time.timeScale = 1f;
         _permaUpgradePanel.SetActive(false);
     }
+    
     
     private void HideUpgradePanel()
     {

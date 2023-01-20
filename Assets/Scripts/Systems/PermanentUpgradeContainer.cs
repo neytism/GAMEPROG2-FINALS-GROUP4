@@ -8,10 +8,13 @@ using UnityEngine.UI;
 
 public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
+    public static event Action DepositedOrbs;
+    
     public PermanentUpgrades[] permanentUpgradesList;
     private PermanentUpgrades permanentUpgrade;
     [SerializeField] private TextMeshProUGUI _upgradeNameText;
     [SerializeField] private TextMeshProUGUI _orbLeftText;
+    [SerializeField] private TextMeshProUGUI _orbTextCount;
     [SerializeField] private Image _orbDepositedBar;
     private bool _isHolding;
 
@@ -35,6 +38,7 @@ public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IP
     {
         _upgradeNameText.text = permanentUpgrade.upgradeName;
     }
+    
 
     public void UpdateOrbLeftText()
     {
@@ -48,11 +52,16 @@ public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IP
 
     public void DepositOrb()
     {
+        if (FindObjectOfType<PlayerStats>().EnergyOrbs == 0) return;
         permanentUpgrade.DepositOrbs();
-
+        
         if (permanentUpgrade.isUnlocked)
         {
             CheckUpgrades();
+        }
+        else
+        {
+            DepositedOrbs?.Invoke();
         }
     }
 
@@ -72,7 +81,7 @@ public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IP
         DepositOrb();
     }
 
-    public void UpdateUI()
+    public void UpdateUIAfterUnlock()
     {
         UpdateOrbLeftText();
         UpdateOrbFill();
@@ -87,8 +96,10 @@ public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IP
         }
         else
         {
+            //creates new list
             _tempList = new List<PermanentUpgrades>();
         
+            //adds to new list if upgrade is locked
             foreach (PermanentUpgrades perma in permanentUpgradesList)
             {
                 if (!perma.isUnlocked)
@@ -97,22 +108,36 @@ public class PermanentUpgradeContainer : MonoBehaviour, IPointerEnterHandler, IP
                 }
             }
 
-            if (_tempList.Count == 0) return;
-        
-
-            _tempPermaUp = _tempList[0];
-
-            foreach (PermanentUpgrades perma in _tempList)
+            
+            if (_tempList.Count == 0)
             {
-                if (perma.prerequisites.Length < _tempPermaUp.prerequisites.Length)
+                //will get the highest upgrade level if there is no locked Upgrade found 
+                _tempPermaUp = permanentUpgradesList[0];
+                
+                foreach (PermanentUpgrades perma in permanentUpgradesList)
                 {
-                    _tempPermaUp = perma;
+                    if (perma.levelOfUpgrade > _tempPermaUp.levelOfUpgrade)
+                    {
+                        _tempPermaUp = perma;
+                    }
+                }
+            }
+            else
+            {
+                //gets the lowest locked level
+                _tempPermaUp = _tempList[0];
+                foreach (PermanentUpgrades perma in _tempList)
+                {
+                    if (perma.levelOfUpgrade < _tempPermaUp.levelOfUpgrade)
+                    {
+                        _tempPermaUp = perma;
+                    }
                 }
             }
 
             permanentUpgrade = _tempPermaUp;
             
-            UpdateUI();
+            UpdateUIAfterUnlock();
         }
     }
 

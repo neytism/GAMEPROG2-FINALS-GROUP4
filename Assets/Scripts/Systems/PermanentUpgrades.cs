@@ -15,6 +15,7 @@ public class PermanentUpgrades : ScriptableObject
     public float requiredOrbs;
     public float depositedOrbs;
     public bool isUnlocked;
+    public int levelOfUpgrade;
     public PermanentUpgrades[] prerequisites;
 
     //player upgrades

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyHurt : MonoBehaviour
 {
@@ -9,10 +11,16 @@ public class EnemyHurt : MonoBehaviour
     private bool _isHit;
     private Weapon _weapon;
     [SerializeField] private float _health;
+    private float _currenHealth;
     
-    [SerializeField] private GameObject _XPOrb;
     [SerializeField] private GameObject _damageText;
     [SerializeField] private Transform _damageTextPos;
+
+
+    private void OnEnable()
+    {
+        _currenHealth = _health;
+    }
 
     private void Start()
     {
@@ -27,10 +35,10 @@ public class EnemyHurt : MonoBehaviour
             _isHit = true;
             TakeDamage(_weapon.damage);
                 
-            if(_health <= 0)
+            if(_currenHealth <= 0)
             {
                 gameObject.SetActive(false);
-                DropExperienceOrb();
+                GetComponent<EnemyDrop>().DropOrbChance();
             }
             else
             {
@@ -47,7 +55,7 @@ public class EnemyHurt : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
-        _health -= damage;
+        _currenHealth -= damage;
     }
 
     private void ShowDamage(string damage)
@@ -57,9 +65,5 @@ public class EnemyHurt : MonoBehaviour
         text.SetActive(true);
     }
 
-    private void DropExperienceOrb()
-    {
-        GameObject XPOrb = ObjectPool.Instance.GetObject(_XPOrb, transform.position);
-        XPOrb.SetActive(true);
-    }
+    
 }

@@ -9,6 +9,7 @@ public class WeaponController : MonoBehaviour
 {
     public static event Action WeaponReload;
     public static event Action StartShooting;
+    public static event Action UpdateUI;
 
     private WeaponHolder _weaponHolder;
     [SerializeField] private Weapon _weapon;
@@ -39,6 +40,7 @@ public class WeaponController : MonoBehaviour
         if(reloading) return;
         
         StartShooting?.Invoke();
+        UpdateUI?.Invoke();
         
         if(_weapon.currentAmmo <= 0)
         {
@@ -69,6 +71,7 @@ public class WeaponController : MonoBehaviour
         //can put here animation for reloading
         yield return new WaitForSeconds(_weapon.reloadSpeed);
         _weapon.currentAmmo = _weapon.maxAmmo;
+        UpdateUI?.Invoke();
         reloading = false;
     }
 

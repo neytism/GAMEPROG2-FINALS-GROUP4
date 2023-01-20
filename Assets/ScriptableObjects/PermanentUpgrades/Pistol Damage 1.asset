@@ -16,8 +16,9 @@ MonoBehaviour:
   upgradeName: Pistol Damage 1
   upgradeDescription: Increases base damage of Pistol to 15.
   requiredOrbs: 20
-  depositedOrbs: 18
+  depositedOrbs: 20
   isUnlocked: 1
+  levelOfUpgrade: 1
   prerequisites: []
   addMaxHealth: 0
   addCurrentHealth: 0

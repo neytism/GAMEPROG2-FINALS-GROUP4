@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1665970104229448225}
   - component: {fileID: 4762814512228398313}
   - component: {fileID: 109803149727164105}
+  - component: {fileID: -145155780264357162}
   m_Layer: 9
   m_Name: EnemyRanged
   m_TagString: EnemyRanged
@@ -197,7 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 25
-  _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 3835979998573273738}
 --- !u!114 &109803149727164105
@@ -217,3 +217,18 @@ MonoBehaviour:
   retreatRange: 2
   startBtwShotInterval: 5
   projectile: {fileID: 1379538315089016479, guid: 0179c0af866c14b45b27ace15432e713, type: 3}
+--- !u!114 &-145155780264357162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220582721900145697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a681cf15fd33ea44c87e6fe6567fdafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _energyOrbChance: 0.05
+  _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
+  _energyOrb: {fileID: 4504724261767804026, guid: 8643745d94f61e14dae73be7af1536c6, type: 3}

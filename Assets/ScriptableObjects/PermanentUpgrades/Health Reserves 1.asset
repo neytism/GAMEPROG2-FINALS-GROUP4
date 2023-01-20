@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   upgradeName: Health Reserves 1
-  upgradeDescription: Starts the game with 4 Max HP.
+  upgradeDescription: Starts the game with 4 Max HP. (applies to next game)
   requiredOrbs: 25
   depositedOrbs: 25
   isUnlocked: 1
+  levelOfUpgrade: 1
   prerequisites: []
   addMaxHealth: 0
   addCurrentHealth: 0
