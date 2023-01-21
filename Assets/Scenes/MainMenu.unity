@@ -1027,7 +1027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66.649994, y: 28.899994}
+  m_AnchoredPosition: {x: 66.650024, y: 28.899994}
   m_SizeDelta: {x: 84.32001, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279719885
@@ -1245,7 +1245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66.649994, y: 71.600006}
+  m_AnchoredPosition: {x: 66.650024, y: 71.600006}
   m_SizeDelta: {x: 84.32001, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692167269
@@ -1361,6 +1361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolManager: {fileID: 1961295306314690056, guid: abe395f5ac7b9994ea277f90732e4e25, type: 3}
   saveManager: {fileID: 8006721715632914637, guid: dab7e18dcb0bb75448f0b5b2f73c0485, type: 3}
+  soundManager: {fileID: 632339637289927164, guid: 6d1003449c5789845ad280f61f203367, type: 3}
 --- !u!4 &1769521582
 Transform:
   m_ObjectHideFlags: 0
@@ -1413,7 +1414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66.649994, y: 115.100006}
+  m_AnchoredPosition: {x: 66.650024, y: 115.100006}
   m_SizeDelta: {x: 84.32001, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044980168

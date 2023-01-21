@@ -7,18 +7,19 @@ using TMPro;
 
 public class PlayerLevel : MonoBehaviour
 {
-    
 
     public static event Action LevelUp;
     public static event Action<int> UpdateLevelTextUI;
     
     private PlayerStats _playerStats;
+    private LevelScaling _levelScaling;
 
 
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
-        _playerStats.Level = 1;
+        _levelScaling = GetComponent<LevelScaling>();
+        IncreaseLevel();
     }
 
     private void OnEnable()
@@ -31,6 +32,7 @@ public class PlayerLevel : MonoBehaviour
         _playerStats.Level++;
         LevelUp?.Invoke();
         UpdateLevelTextUI?.Invoke(_playerStats.Level);
+        _playerStats.ExperienceRequired = _levelScaling.CalculateRequiredExp(_playerStats.Level);
     }
 
 }

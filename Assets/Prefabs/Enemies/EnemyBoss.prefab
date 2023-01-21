@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042963246280053926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0.678, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,13 +44,13 @@ GameObject:
   - component: {fileID: 7744714941690591998}
   - component: {fileID: -4430306530153732290}
   - component: {fileID: -4865691043591873743}
-  - component: {fileID: 1665970104229448225}
   - component: {fileID: 4762814512228398313}
-  - component: {fileID: 109803149727164105}
-  - component: {fileID: -145155780264357162}
+  - component: {fileID: -7970478142886228981}
+  - component: {fileID: -8700156543258721553}
+  - component: {fileID: 6367654634168798694}
   m_Layer: 9
-  m_Name: EnemyRanged
-  m_TagString: EnemyRanged
+  m_Name: EnemyBoss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 8220582721900145697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.42, y: -0.14, z: 0.26811165}
-  m_LocalScale: {x: 0.703, y: 0.703, z: 0.703}
+  m_LocalScale: {x: 2.52138, y: 2.52138, z: 2.52138}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3835979998573273738}
@@ -113,7 +113,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.6226415, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.095608525, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -172,19 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9559b669077492a41ba67fc2a14039b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1665970104229448225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8220582721900145697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2d448141d8f2441bb650c8387c3b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isKnockBack: 0
 --- !u!114 &4762814512228398313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,10 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dfc5e19c64fa44fa4dab9b8c418fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 25
+  _health: 500
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 3835979998573273738}
---- !u!114 &109803149727164105
+--- !u!114 &-7970478142886228981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,15 +196,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8220582721900145697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938e1ae3b673d864aa231cbb9320402b, type: 3}
+  m_Script: {fileID: 11500000, guid: 19f128c7b9947664aa548fb7e15a42b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  stoppingRange: 4
-  retreatRange: 2
-  startBtwShotInterval: 5
-  projectile: {fileID: 1379538315089016479, guid: 0179c0af866c14b45b27ace15432e713, type: 3}
---- !u!114 &-145155780264357162
+  _speed: 1.5
+--- !u!114 &-8700156543258721553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,9 +212,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a681cf15fd33ea44c87e6fe6567fdafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _expChance: 1
-  _energyOrbChance: 0.05
-  _stationChance: 0
+  _energyOrbChance: 0
+  _stationChance: 1
   _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _energyOrb: {fileID: 4504724261767804026, guid: 8643745d94f61e14dae73be7af1536c6, type: 3}
   _energyStation: {fileID: 5691293985719069740, guid: 244e2c3f642208848a63ebac5e16a4b8, type: 3}
+--- !u!114 &6367654634168798694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220582721900145697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2d448141d8f2441bb650c8387c3b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isKnockBack: 0

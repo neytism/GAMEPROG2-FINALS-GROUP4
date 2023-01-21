@@ -225,6 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a681cf15fd33ea44c87e6fe6567fdafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _expChance: 1
   _energyOrbChance: 0.03
+  _stationChance: 0
   _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _energyOrb: {fileID: 4504724261767804026, guid: 8643745d94f61e14dae73be7af1536c6, type: 3}
+  _energyStation: {fileID: 5691293985719069740, guid: 244e2c3f642208848a63ebac5e16a4b8, type: 3}

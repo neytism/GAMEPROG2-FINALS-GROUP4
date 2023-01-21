@@ -54,6 +54,7 @@ public class EnemyHurt : MonoBehaviour
     private void TakeDamage(float damage)
     {
         _currenHealth -= damage;
+        Debug.Log($"{_currenHealth}");
     }
 
     private void ShowDamage(string damage)

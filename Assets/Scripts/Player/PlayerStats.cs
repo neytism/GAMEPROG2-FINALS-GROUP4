@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
     private float _experienceRequired;
 
     
-    private int _level;
+    private int _level = 0;
     
     #region GetSet
 
