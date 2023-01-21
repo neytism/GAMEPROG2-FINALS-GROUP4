@@ -20,6 +20,13 @@ public class PlayerMovement : MonoBehaviour
         WeaponController.WeaponReload += SetRunningSpeed;
         PlayerShoot.stopShoot += SetRunningSpeed;
     }
+    
+    private void OnDisable()
+    {
+        WeaponController.StartShooting -= SetWalkingSpeed;
+        WeaponController.WeaponReload -= SetRunningSpeed;
+        PlayerShoot.stopShoot -= SetRunningSpeed;
+    }
 
     private void Awake()
     {

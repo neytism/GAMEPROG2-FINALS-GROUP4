@@ -10,7 +10,13 @@ public class PlayerEnergyOrbs : MonoBehaviour
     private void OnEnable()
     {
         Orbs.EnergyOrbCollected += AddEnergyOrb;
-        PermanentUpgradeContainer.DepositedOrbs += DeductEnergyOrb;
+        HealthReserves.DepositedOrbs += DeductEnergyOrb;
+    }
+    
+    private void OnDisable()
+    {
+        Orbs.EnergyOrbCollected -= AddEnergyOrb;
+        HealthReserves.DepositedOrbs -= DeductEnergyOrb;
     }
 
     public void AddEnergyOrb()

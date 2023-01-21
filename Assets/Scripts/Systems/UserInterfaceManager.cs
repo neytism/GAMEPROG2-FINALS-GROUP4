@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UserInterfaceManager : MonoBehaviour
 {
+    public static event Action SaveGamePlsHuHu; 
+
     [SerializeField] private GameObject _player;
     [SerializeField] private WeaponHolder _weaponHolder;
     private PlayerStats _playerStats;
@@ -32,8 +35,13 @@ public class UserInterfaceManager : MonoBehaviour
     //counterHUD
     [SerializeField] private TextMeshProUGUI _ammoCountText;
     [SerializeField] private TextMeshProUGUI _orbCountTextHUD;
+    
+    //Game Over Panel
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private TextMeshProUGUI _lostOrbText;
     private void OnEnable()
     {
+        WeaponHolder.WeaponEquipped += AssignWeapon;
         PlayerAddExperience.UpdateExperienceUI += UpdateXPBar;
         PlayerHealth.UpdateHealthUI += UpdateHealthBar;
         PlayerApplyUpgrades.UpgradeApplied += UpdateHealthBar;
@@ -43,18 +51,39 @@ public class UserInterfaceManager : MonoBehaviour
         PlayerApplyUpgrades.UpgradeApplied += HideUpgradePanel;
         WeaponController.UpdateUI += UpdateAmmoCount;
         PlayerEnergyOrbs.UpdateOrbUI += UpdateOrbCount;
-        PermanentUpgradeContainer.DepositedOrbs += UpdateOrbCount;
+        HealthReserves.DepositedOrbs += UpdateOrbCount;
+        PlayerHealth.PlayerDeath += ShowGameOverPanel;
+    }
+    private void OnDisable()
+    {
+        WeaponHolder.WeaponEquipped -= AssignWeapon;
+        PlayerAddExperience.UpdateExperienceUI -= UpdateXPBar;
+        PlayerHealth.UpdateHealthUI -= UpdateHealthBar;
+        PlayerApplyUpgrades.UpgradeApplied -= UpdateHealthBar;
+        PlayerLevel.UpdateLevelTextUI -= UpdateLevelText;
+        PlayerInteraction.InteractedWithEnergy -= ShowPermaUpgradesPanel;
+        UpgradeHolder.ShowUpgradePanel -= ShowUpgradePanel;
+        PlayerApplyUpgrades.UpgradeApplied -= HideUpgradePanel;
+        WeaponController.UpdateUI -= UpdateAmmoCount;
+        PlayerEnergyOrbs.UpdateOrbUI -= UpdateOrbCount;
+        HealthReserves.DepositedOrbs -= UpdateOrbCount;
+        PlayerHealth.PlayerDeath -= ShowGameOverPanel;
+        //MainGameCamera.NewCamera -= ChangeCameraRenderer;
     }
 
     private void Start()
     {
         _playerStats = _player.GetComponent<PlayerStats>();
-        _weapon = _weaponHolder.SelectedWeaponType.Weapon;
         _XPBar.fillAmount = 0;
         UpdateHealthBar();
         UpdateLevelText(FindObjectOfType<PlayerStats>().Level);
-        UpdateAmmoCount();
         UpdateOrbCount();
+    }
+
+    private void AssignWeapon()
+    {
+        _weapon = _weaponHolder.SelectedWeaponType.Weapon;
+        UpdateAmmoCount();
     }
 
     private void UpdateXPBar(float xpGain)
@@ -112,6 +141,7 @@ public class UserInterfaceManager : MonoBehaviour
     public void HidePermaUpgradesPanel()
     {
         Time.timeScale = 1f;
+        SaveGamePlsHuHu?.Invoke();
         _permaUpgradePanel.SetActive(false);
     }
     
@@ -126,6 +156,39 @@ public class UserInterfaceManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         _upgradePanel.SetActive(true);
+    }
+
+    private void ShowGameOverPanel()
+    {
+        Time.timeScale = 0f;
+        StartCoroutine(WaitForSecondsToReload());
+    }
+
+    IEnumerator WaitForSecondsToReload()
+    {
+        if (_playerStats.EnergyOrbs > 0)
+        {
+            _lostOrbText.text = $"You lost {_playerStats.EnergyOrbs} orbs. sayang tuloy hays";
+            _gameOverPanel.SetActive(true);
+        }
+        yield return new WaitForSecondsRealtime(3f);
+        Time.timeScale = 1f;
+        ObjectPool.Instance.Dispose(ObjectPool.Instance._objectsPool);
+        ObjectPool.Instance._objectsPool.Clear();
+        SceneManager.LoadScene("MainGame");
+        
+    }
+
+    private void ChangeCameraRenderer()
+    {
+        Canvas canvas = gameObject.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main;
+    }
+
+    public void SaveGameDate()
+    {
+        SaveSystem.Instance.SaveGame();
     }
 
 }

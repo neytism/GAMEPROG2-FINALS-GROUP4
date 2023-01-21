@@ -16,12 +16,24 @@ public class ReloadBar : MonoBehaviour
     private void OnEnable()
     {
         WeaponController.WeaponReload += ReloadBarStart;
+        WeaponHolder.WeaponEquipped += AssignWeapon;
+    }
+    
+    private void OnDisable()
+    {
+        WeaponController.WeaponReload -= ReloadBarStart;
+        WeaponHolder.WeaponEquipped -= AssignWeapon;
     }
 
     private void Start()
     {
         _playerNoAmmo = false;
         _reloadBar.enabled = false;
+        
+    }
+
+    private void AssignWeapon()
+    {
         _weapon = WeaponHolder.SelectedWeaponPrefab.GetComponent<WeaponController>();
     }
 

@@ -9,10 +9,12 @@ using UnityEngine;
 public class Instance : MonoBehaviour
 {
     public GameObject poolManager;
+    public GameObject saveManager;
 
     void Awake()
     {
         Instantiate(poolManager, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(saveManager, new Vector3(0, 0, 0), Quaternion.identity);
     }
     
     //This script creates GameObjects for Singletons

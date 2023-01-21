@@ -14,7 +14,7 @@ public class EnemySpawnTest : MonoBehaviour
     void Start()
     {
         StartCoroutine(DelayBeforeSpawning());
-        StartCoroutine(SpawnEnemy());  //can be commented
+        //StartCoroutine(SpawnEnemy());  //can be commented
     }
 
     IEnumerator SpawnEnemy()  //spawns enemy based on radius around player
@@ -32,7 +32,7 @@ public class EnemySpawnTest : MonoBehaviour
 
     IEnumerator DelayBeforeSpawning()   //adds delay to show mini tutorial pop up
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         StartCoroutine(SpawnEnemy());
     }
 }

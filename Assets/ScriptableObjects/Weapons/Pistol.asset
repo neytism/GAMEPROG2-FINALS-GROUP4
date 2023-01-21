@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5608bd4f67facad4496bd63a53e38e88, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
   weaponName: Pistol
   bulletType: 0
   damage: 10
@@ -24,3 +25,4 @@ MonoBehaviour:
   knockBackForce: 0
   maxAmmo: 6
   currentAmmo: 6
+  defaultValues: {fileID: 11400000, guid: 583a73410f29e5946a425c2a6a7993e9, type: 2}

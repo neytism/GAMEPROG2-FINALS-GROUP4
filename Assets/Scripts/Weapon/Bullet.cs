@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour
                     DeactivateBullet();
                 }
 
-                Debug.Log("Enemy pierced");
                 currentPierces++;
             }
         }

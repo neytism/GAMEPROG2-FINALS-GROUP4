@@ -1,15 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    
     //for tracking player
-    public Transform target;
+    private Transform target;
     public float smoothSpeed;
     public float shakeDuration;
     private Vector3 tempPos;
     public Vector3 minVal, maxVal;
+
+    private void Start()
+    {
+        target = FindObjectOfType<PlayerMovement>().transform;
+    }
+
     void FixedUpdate()
     {
         //follow player

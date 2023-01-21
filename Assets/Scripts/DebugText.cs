@@ -15,40 +15,57 @@ public class DebugText : MonoBehaviour
     private Weapon weapon;
 
     public bool isInvincible;
+    private bool isPwedeNa = false;
     private int _health;
 
-    private void Start()
+
+    private void OnEnable()
+    {
+        WeaponHolder.WeaponEquipped += AssignWeapon;
+    }
+    private void OnDisable()
+    {
+        WeaponHolder.WeaponEquipped -= AssignWeapon;
+    }
+
+    private void AssignWeapon()
     {
         stats = FindObjectOfType<PlayerStats>();
-        weapon = FindObjectOfType<WeaponController>().Weapon;
+        weapon = WeaponInteract.weapon.GetComponent<WeaponController>().Weapon;
+        isPwedeNa = true;
     }
 
     void Update()
     {
-        statsText = $"Level: {stats.Level}\n" +
-                    $"XP: {stats.Experience} out of {stats.ExperienceRequired}\n" +
-                    $"Energy Orbs: {stats.EnergyOrbs}\n" +
-                    $"Max Health: {stats.MaxHealth}\n" +
-                    $"Current Health: {stats.CurrentHealth}\n" +
-                    $"Position: {stats.GetComponent<Transform>().position.normalized}\n" +
-                    $"Movement Speed: {stats.MovementSpeed}\n" +
-                    $"Selected Weapon: {weapon.weaponName}\n" +
-                    $"Max Ammo: {weapon.maxAmmo}\n" +
-                    $"Current Ammo: {weapon.currentAmmo}\n" +
-                    $"Damage: {weapon.damage}\n" +
-                    $"FireRate: {weapon.fireRate}\n" +
-                    $"Reload Speed: {weapon.reloadSpeed}\n" +
-                    $"Bullet Speed: {weapon.bulletSpeed}\n" +
-                    $"Projectiles: {weapon.projectiles}\n" +
-                    $"Spread Angle: {weapon.spreadAngle}\n" +
-                    $"Knock Back force: {weapon.knockBackForce}\n" +
-                    $"Piercing: {weapon.maxPiercing}";
-        text.text = statsText;
+        if (isPwedeNa)
+        {
+            statsText = $"Level: {stats.Level}\n" +
+                        $"XP: {stats.Experience} out of {stats.ExperienceRequired}\n" +
+                        $"Energy Orbs: {stats.EnergyOrbs}\n" +
+                        $"Max Health: {stats.MaxHealth}\n" +
+                        $"Current Health: {stats.CurrentHealth}\n" +
+                        $"Position: {stats.GetComponent<Transform>().position.normalized}\n" +
+                        $"Movement Speed: {stats.MovementSpeed}\n" +
+                        $"Selected Weapon: {weapon.weaponName}\n" +
+                        $"Max Ammo: {weapon.maxAmmo}\n" +
+                        $"Current Ammo: {weapon.currentAmmo}\n" +
+                        $"Damage: {weapon.damage}\n" +
+                        $"FireRate: {weapon.fireRate}\n" +
+                        $"Reload Speed: {weapon.reloadSpeed}\n" +
+                        $"Bullet Speed: {weapon.bulletSpeed}\n" +
+                        $"Projectiles: {weapon.projectiles}\n" +
+                        $"Spread Angle: {weapon.spreadAngle}\n" +
+                        $"Knock Back force: {weapon.knockBackForce}\n" +
+                        $"Piercing: {weapon.maxPiercing}";
+            text.text = statsText;
+        }
+        
 
         if (isInvincible)
         {
             stats.CurrentHealth = 4;
         }
+        
     }
 
     public void InvincibilityOn()

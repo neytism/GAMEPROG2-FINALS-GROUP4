@@ -47,7 +47,7 @@ public class PlayerHurt : MonoBehaviour
         //knockback
         Vector2 knockbackDirection = (transform.position - sender.position).normalized;
         _rb.AddForce(knockbackDirection * 20, ForceMode2D.Impulse);
-        StartCoroutine(Invincible(3));
+        StartCoroutine(Invincible(2f));
         StartCoroutine(StopKnockback(.075f));
     }
     

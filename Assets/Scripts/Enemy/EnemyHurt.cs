@@ -10,6 +10,7 @@ public class EnemyHurt : MonoBehaviour
     
     private bool _isHit;
     private Weapon _weapon;
+    private Weapon _tempWeapon;
     [SerializeField] private float _health;
     private float _currenHealth;
     
@@ -20,19 +21,16 @@ public class EnemyHurt : MonoBehaviour
     private void OnEnable()
     {
         _currenHealth = _health;
+        _weapon = WeaponHolder.selectedWeapon;
     }
 
-    private void Start()
-    {
-        _weapon = FindObjectOfType<WeaponController>().Weapon;
-
-    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag.Equals("PlayerNormalBullet")  || col.gameObject.tag.Equals("PlayerExplosionRadius")) 
         {
             if(_isHit) return;
             _isHit = true;
+            
             TakeDamage(_weapon.damage);
                 
             if(_currenHealth <= 0)

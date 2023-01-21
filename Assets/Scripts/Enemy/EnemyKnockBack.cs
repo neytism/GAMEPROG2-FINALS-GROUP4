@@ -12,8 +12,12 @@ public class EnemyKnockBack : MonoBehaviour
 
     private void Start()
     {
-        _weapon = FindObjectOfType<WeaponController>().Weapon;
         _player = FindObjectOfType<PlayerMovement>().transform;
+    }
+
+    private void OnEnable()
+    {
+        _weapon = WeaponHolder.selectedWeapon;
     }
 
     public void KnockBack()

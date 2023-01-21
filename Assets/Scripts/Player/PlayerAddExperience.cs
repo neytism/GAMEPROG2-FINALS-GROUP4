@@ -19,6 +19,11 @@ public class PlayerAddExperience : MonoBehaviour
     {
         Orbs.ExperienceCollected += AddExperience;
     }
+    
+    private void OnDisable()
+    {
+        Orbs.ExperienceCollected -= AddExperience;
+    }
     private void AddExperience(float experience)
     {
         UpdateExperienceUI?.Invoke(experience);

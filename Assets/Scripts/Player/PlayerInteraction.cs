@@ -6,15 +6,28 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public static event Action InteractedWithEnergy;
+    public static event Action InteractedWithWeapon;
+    
     [SerializeField] private GameObject _resonateText;
+    [SerializeField] private GameObject _weaponText;
 
-    private bool _isNear = false;
+    private bool _isNearUpgradeStation = false;
+    private bool _isNearWeapon = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && _isNear)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-           InteractedWithEnergy?.Invoke();
+            if (_isNearUpgradeStation)
+            {
+                InteractedWithEnergy?.Invoke();
+            }
+            
+            if (_isNearWeapon)
+            {
+                InteractedWithWeapon?.Invoke();
+            }
+
         }
     }
 
@@ -22,8 +35,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("PermaUpgradeStation"))
         {
-            _isNear = true;
+            _isNearUpgradeStation = true;
             _resonateText.SetActive(true);
+        } else if (col.gameObject.tag.Equals("WeaponNear"))
+        {
+            _isNearWeapon = true;
+            _weaponText.SetActive(true);
         }
     }
 
@@ -31,8 +48,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("PermaUpgradeStation"))
         {
-            _isNear = false;
+            _isNearUpgradeStation = false;
             _resonateText.SetActive(false);
+        } else if(col.gameObject.tag.Equals("WeaponNear"))
+        {
+            _isNearWeapon = false;
+            _weaponText.SetActive(false);
         }
     }
 }

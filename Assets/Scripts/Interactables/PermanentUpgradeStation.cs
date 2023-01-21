@@ -9,6 +9,10 @@ public class PermanentUpgradeStation : MonoBehaviour
     {
         PlayerInteraction.InteractedWithEnergy += DeactivateStation;
     }
+    private void OnDisable()
+    {
+        PlayerInteraction.InteractedWithEnergy -= DeactivateStation;
+    }
 
     private void DeactivateStation()
     {

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public static event Action UpdateHealthUI;
+    public static event Action PlayerDeath;
+    
     private PlayerStats _playerStats;
     private PlayerHurt _playerHurt;
 
@@ -16,6 +18,12 @@ public class PlayerHealth : MonoBehaviour
     {
         UpdateHealthUI += CheckHealth;
         PlayerHurt.ReduceHealth += ReduceHealth;
+    }
+    
+    private void OnDisable()
+    {
+        UpdateHealthUI -= CheckHealth;
+        PlayerHurt.ReduceHealth -= ReduceHealth;
     }
 
     private void Awake()
@@ -35,24 +43,6 @@ public class PlayerHealth : MonoBehaviour
                 AddHealth(1);
                 _holdTime = 0;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _playerStats.CurrentHealth++;
-            UpdateHealthUI?.Invoke();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            _playerStats.MaxHealth--;
-            UpdateHealthUI?.Invoke();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            _playerStats.MaxHealth++;
-            _playerStats.CurrentHealth++;
-            UpdateHealthUI?.Invoke();
         }
     }
 
@@ -75,6 +65,10 @@ public class PlayerHealth : MonoBehaviour
         {
             _playerStats.CurrentHealth--;
             UpdateHealthUI?.Invoke();
+            if (_playerStats.CurrentHealth == 0) //if player is dead
+            {
+                PlayerDeath?.Invoke();
+            }
         }
     }
 

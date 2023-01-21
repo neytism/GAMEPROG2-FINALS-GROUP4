@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: Haste
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
   upgradeDescription: 'Move Speed +20%
 
     Fire Rate +5%'
   addMaxHealth: 0
+  addCurrentHealth: 0
   percentMovementSpeed: 0.2
   percentPickUpRange: 0
   ChangeBulletType: 0

@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1786325300123453432}
   - component: {fileID: 511854485784863276}
   m_Layer: 0
-  m_Name: OrbCountBackground
+  m_Name: OrbCountFillBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 4211244177586000901}
   - component: {fileID: 2843777733054346297}
   m_Layer: 0
-  m_Name: OrbCount
+  m_Name: OrbCountFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.376
+  m_FillAmount: 0.189
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 2128287531451876177}
   - component: {fileID: 8710044720369464903}
   m_Layer: 0
-  m_Name: OrbCountText
+  m_Name: OrbCountTextRequired
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,7 +661,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39c0ba35745c6c498571dc4b6bc08dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  permanentUpgrades: {fileID: 0}
-  _upgradeNameText: {fileID: 5930873253410514565}
-  _orbLeftText: {fileID: 8710044720369464903}
-  _orbDepositedBar: {fileID: 2843777733054346297}

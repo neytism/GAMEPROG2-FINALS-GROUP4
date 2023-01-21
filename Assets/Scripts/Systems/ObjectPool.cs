@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,11 @@ public class ObjectPool : MonoBehaviour
     public Transform spawnedObjectsParent;
 
     private void Start()
+    {
+        
+    }
+
+    private void OnEnable()
     {
         _objectsPool = new List<GameObject>();
         _objectsPoolUI = new List<GameObject>();

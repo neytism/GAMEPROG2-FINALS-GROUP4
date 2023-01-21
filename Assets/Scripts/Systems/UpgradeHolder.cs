@@ -24,6 +24,11 @@ public class UpgradeHolder : MonoBehaviour
     {
         PlayerLevel.LevelUp += GenerateUpgrades;
     }
+    
+    private void OnDisable()
+    {
+        PlayerLevel.LevelUp -= GenerateUpgrades;
+    }
 
     public void GenerateUpgrades()
     {

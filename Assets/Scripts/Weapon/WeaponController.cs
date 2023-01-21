@@ -12,8 +12,10 @@ public class WeaponController : MonoBehaviour
     public static event Action UpdateUI;
 
     private WeaponHolder _weaponHolder;
-    [SerializeField] private Weapon _weapon;
+    public Weapon _weapon;
     [SerializeField] private Transform _firePoint;
+
+    public int selectedBulletType;
     
     private bool reloading;
     private float fireTimer;
@@ -21,6 +23,13 @@ public class WeaponController : MonoBehaviour
     private void OnEnable()
     {
         PlayerShoot.shoot += Fire;
+        _weaponHolder = FindObjectOfType<WeaponHolder>();
+        _weapon.currentAmmo = _weapon.maxAmmo;
+        selectedBulletType = (int)_weapon.bulletType;
+    }
+    private void OnDisable()
+    {
+        PlayerShoot.shoot -= Fire;
     }
 
     public Weapon Weapon => _weapon;
@@ -28,17 +37,10 @@ public class WeaponController : MonoBehaviour
     
     public float BulletSpeed => _weapon.bulletSpeed;
 
-
-    private void Awake()
-    {
-        _weaponHolder = FindObjectOfType<WeaponHolder>();
-        _weapon.currentAmmo = _weapon.maxAmmo;
-    }
-    
     public void Fire()
     {
-        if(reloading) return;
         
+        if(reloading) return;
         StartShooting?.Invoke();
         UpdateUI?.Invoke();
         
@@ -54,7 +56,6 @@ public class WeaponController : MonoBehaviour
 
         _weapon.currentAmmo--;
         fireTimer = Time.time;
-        Debug.Log($"{_weapon.name} fired, {_weapon.currentAmmo} bullets left");
         
     }
 
@@ -63,12 +64,14 @@ public class WeaponController : MonoBehaviour
         WeaponReload?.Invoke();
         if(_weapon.currentAmmo == _weapon.maxAmmo) return;
         reloading = true;
+        
         StartCoroutine(ReloadCoroutine());
     }
 
     private IEnumerator ReloadCoroutine()
     {
         //can put here animation for reloading
+        
         yield return new WaitForSeconds(_weapon.reloadSpeed);
         _weapon.currentAmmo = _weapon.maxAmmo;
         UpdateUI?.Invoke();
@@ -81,7 +84,7 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < _weapon.projectiles; i++)
         {
             float angle = i * _weapon.spreadAngle - (_weapon.projectiles - 1) / 2 * _weapon.spreadAngle;
-            GameObject bullet = ObjectPool.Instance.GetObject(_weaponHolder.SelectedBulletPrefab((int)_weapon.bulletType), _firePoint.position);
+            GameObject bullet = ObjectPool.Instance.GetObject(_weaponHolder.bulletObject, _firePoint.position);
             bullet.SetActive(true);
                 
             bullet.GetComponent<Rigidbody2D>().AddForce(RotateSpread(_firePoint.right, angle) * _weapon.bulletSpeed,ForceMode2D.Impulse);
@@ -99,6 +102,7 @@ public class WeaponController : MonoBehaviour
 
         return Quaternion.AngleAxis(angle, axis) * firePoint;
     }
+
 
    
     

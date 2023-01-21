@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 809034585604645516}
   - component: {fileID: 809034585604645517}
   - component: {fileID: 809034585604645518}
+  - component: {fileID: -8340521922181421958}
   m_Layer: 8
   m_Name: Pistol
   m_TagString: PlayerWeapon
@@ -105,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 84364f9f58de5ad4d92732d10fb500e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129,8 +130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593ed5b778297c948a672b121d6b537c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab:
-  - {fileID: 2185879720640796267, guid: 678e8fb285c88e8459d948a5bae7d8c5, type: 3}
-  - {fileID: 2185879720640796267, guid: 890cd7621d11697459916676cf03ef79, type: 3}
   _weapon: {fileID: 11400000, guid: b50ab58e651ceea46934dd532ed77018, type: 2}
   _firePoint: {fileID: 809034585234664084}
+  selectedBulletType: 0
+--- !u!114 &-8340521922181421958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809034585604645515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3449dfda286523f46a0f53e798e6d543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponDefault: {fileID: 11400000, guid: b50ab58e651ceea46934dd532ed77018, type: 2}

@@ -37,4 +37,9 @@ public class PlayerApplyUpgrades : MonoBehaviour
         UpgradeApplied?.Invoke();
     }
 
+    public void ApplyPermanentUpgrade()
+    {
+        
+    }
+
 }

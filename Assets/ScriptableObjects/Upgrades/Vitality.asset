@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: Vitality
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
   upgradeDescription: Max HP +1
   addMaxHealth: 1
   addCurrentHealth: 1

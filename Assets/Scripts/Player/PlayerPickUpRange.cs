@@ -11,6 +11,11 @@ public class PlayerPickUpRange : MonoBehaviour
     {
         PlayerApplyUpgrades.UpgradeApplied += UpdateRadius;
     }
+    
+    private void OnDisable()
+    {
+        PlayerApplyUpgrades.UpgradeApplied -= UpdateRadius;
+    }
 
     private void Awake()
     {

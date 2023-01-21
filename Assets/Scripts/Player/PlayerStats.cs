@@ -6,8 +6,15 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    //must be saved
+    private int _baseMaxHealth;
     
+    //must reset
     [SerializeField] private int _maxHealth;
+    
+
+   
+
     [SerializeField] private int _currentHealth;
     [SerializeField] private float _movementSpeed;
 
@@ -89,7 +96,20 @@ public class PlayerStats : MonoBehaviour
         get => _level;
         set => _level = value;
     }
+    
+    public int BaseMaxHealth
+    {
+        get => _baseMaxHealth;
+        set => _baseMaxHealth = value;
+    }
+    
 
     #endregion
-    
+
+    private void Awake()
+    {
+        _baseMaxHealth = SaveSystem._baseHealth;
+        _maxHealth = _baseMaxHealth;
+        _currentHealth = _maxHealth;
+    }
 }
