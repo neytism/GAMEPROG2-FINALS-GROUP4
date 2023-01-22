@@ -11,7 +11,7 @@ public class EnemySpawnTest : MonoBehaviour
     [SerializeField] private GameObject[] _enemyPrefabs;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(DelayBeforeSpawning());
         //StartCoroutine(SpawnEnemy());  //can be commented

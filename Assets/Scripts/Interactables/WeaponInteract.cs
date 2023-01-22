@@ -9,6 +9,7 @@ public class WeaponInteract : MonoBehaviour
     public static event Action<GameObject> WeaponCollected;  
     public GameObject[] weapons;
     public static GameObject weapon;
+    public GameObject weaponShadow;
     private int randomIndex;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class WeaponInteract : MonoBehaviour
     private void DeactivateWeapon()
     {
         Destroy(gameObject);
+        Destroy(weaponShadow);
         Debug.Log("WeaponSelected");
     }
     

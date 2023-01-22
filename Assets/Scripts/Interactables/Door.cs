@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    public GameObject spawner;
+    public GameObject doorlock;
     private void OnTriggerEnter2D(Collider2D col)
     {
-        SceneManager.LoadScene("MainGame");
+        spawner.SetActive(true);
+        doorlock.SetActive(true);
     }
 }
