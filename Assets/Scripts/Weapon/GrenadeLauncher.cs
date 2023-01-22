@@ -5,19 +5,35 @@ using UnityEngine;
 
 public class GrenadeLauncher : MonoBehaviour
 {
-    public static event Action<Weapon> GrenadeLauncherSelected;
+    //public static event Action<Weapon> GrenadeLauncherSelected;
+    //to save and load
+    public float _additionalDamageUpgrade;
+    
     [SerializeField] private Weapon _weaponDefault;
 
-    private Weapon _localWeapon;
+    public Weapon localWeapon;
 
-    public Weapon LocalWeapon
+    private void Awake()
     {
-        get => _localWeapon;
-        set => _localWeapon = value;
+        //gets data from save
+        _additionalDamageUpgrade = SaveSystem.Instance.grenadeLauncherAdditionalDamage;
+        
+        //puts default weapon data on current weapon data to get unchanged data
+        localWeapon.damage = _weaponDefault.damage;
+        localWeapon.fireRate = _weaponDefault.fireRate;
+        localWeapon.reloadSpeed = _weaponDefault.reloadSpeed;
+        localWeapon.bulletSpeed = _weaponDefault.bulletSpeed;
+        localWeapon.spreadAngle = _weaponDefault.spreadAngle;
+        localWeapon.projectiles = _weaponDefault.projectiles;
+        localWeapon.maxPiercing = _weaponDefault.maxPiercing;
+        localWeapon.knockBackForce = _weaponDefault.knockBackForce;
+        localWeapon.maxAmmo = _weaponDefault.maxAmmo;
+        
     }
 
     private void OnEnable()
     {
+        
         WeaponHolder.WeaponEquipped += InitializeWeapon;
     }
 
@@ -28,20 +44,8 @@ public class GrenadeLauncher : MonoBehaviour
 
     private void InitializeWeapon()
     {
-        _localWeapon = _weaponDefault;
-        GrenadeLauncherSelected?.Invoke(_localWeapon);
+        //applies changes from save to the local data
+        localWeapon.damage = _additionalDamageUpgrade + _weaponDefault.damage;
     }
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

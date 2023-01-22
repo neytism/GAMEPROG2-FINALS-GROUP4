@@ -145,4 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3449dfda286523f46a0f53e798e6d543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponDefault: {fileID: 11400000, guid: b50ab58e651ceea46934dd532ed77018, type: 2}
+  _baseDamage: 0
+  _weaponDefault: {fileID: 11400000, guid: 583a73410f29e5946a425c2a6a7993e9, type: 2}
+  localWeapon: {fileID: 11400000, guid: b50ab58e651ceea46934dd532ed77018, type: 2}

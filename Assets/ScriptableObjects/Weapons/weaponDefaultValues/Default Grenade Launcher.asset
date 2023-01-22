@@ -21,8 +21,8 @@ MonoBehaviour:
   bulletSpeed: 15
   spreadAngle: 5
   projectiles: 1
-  maxPiercing: 1
-  knockBackForce: 2
+  maxPiercing: 0
+  knockBackForce: 1
   maxAmmo: 3
   currentAmmo: 3
   defaultValues: {fileID: 11400000}

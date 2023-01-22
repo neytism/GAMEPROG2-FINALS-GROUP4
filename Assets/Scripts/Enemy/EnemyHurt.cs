@@ -43,7 +43,7 @@ public class EnemyHurt : MonoBehaviour
                 GetComponent<EnemyKnockBack>().KnockBack();
             }
                 
-            ShowDamage(_weapon.damage.ToString());
+            ShowDamage(_weapon.damage);
 
             _isHit = false;
         }
@@ -57,10 +57,10 @@ public class EnemyHurt : MonoBehaviour
         Debug.Log($"{_currenHealth}");
     }
 
-    private void ShowDamage(string damage)
+    private void ShowDamage(float damage)
     {
         GameObject text = ObjectPool.Instance.GetObject(_damageText, _damageTextPos.position);
-        text.GetComponent<TextMeshPro>().text = damage;
+        text.GetComponent<TextMeshPro>().text = Math.Round(damage).ToString();
         text.SetActive(true);
     }
 

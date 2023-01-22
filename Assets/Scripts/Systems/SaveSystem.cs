@@ -37,19 +37,33 @@ public class SaveSystem : MonoBehaviour
     private const string SAVE_DATA_KEY = "PlayerData";
     
     //PLAYER
-    public static bool _isFirstTimePlaying;
+    public bool isFirstTimePlaying;
 
     //UPGRADES
    
     //Health Reserves
-    public static int _baseHealth;
-    public static int _healthReserveDeposited;
-    public static int _healthReserveLevel;
-   
+    public int baseHealth;
+    public int healthReserveDeposited;
+    public int healthReserveLevel;
+    public int healthReserveRequired;
+
     //Pistol Damage
-    public static float _pistolBaseDamage;
-    public static int _pistolDamageDeposited;
-    public static int _pistolDamageLevel;
+    public float pistolAdditionalDamage;
+    public int pistolDamageDeposited;
+    public int pistolDamageLevel;
+    public int pistolDamageRequired;
+   
+    //Shotgun Damage
+    public float shotgunAdditionalDamage;
+    public int shotgunDamageDeposited;
+    public int shotgunDamageLevel;
+    public int shotgunDamageRequired;
+   
+    //Grenade Launcher Damage
+    public float grenadeLauncherAdditionalDamage;
+    public int grenadeLauncherDamageDeposited;
+    public int grenadeLauncherDamageLevel;
+    public int grenadeLauncherDamageRequired;
     
     private void OnEnable()
     {
@@ -96,25 +110,41 @@ public class SaveSystem : MonoBehaviour
     private void LoadDataOnLocalData(GameData gameData)
     {
     //PLAYER
-    _isFirstTimePlaying = gameData.isFirstTimePlaying;
+    isFirstTimePlaying = gameData.isFirstTimePlaying;
 
     //UPGRADES
    
     //Health Reserves
-    _baseHealth = gameData.baseHealth;
-    _healthReserveDeposited = gameData.healthReserveDeposited;
-    _healthReserveLevel = gameData.healthReserveLevel;
-   
+    baseHealth = gameData.baseHealth;
+    healthReserveDeposited = gameData.healthReserveDeposited;
+    healthReserveLevel = gameData.healthReserveLevel;
+    healthReserveRequired = gameData.healthReserveRequired;
+
     //Pistol Damage
-    _pistolBaseDamage = gameData.pistolBaseDamage;
-    _pistolDamageDeposited = gameData.healthReserveDeposited;
-    _pistolDamageLevel = gameData.pistolDamageLevel;
+    pistolAdditionalDamage = gameData.pistolAdditionalDamage;
+    pistolDamageDeposited = gameData.pistolDamageDeposited;
+    pistolDamageLevel = gameData.pistolDamageLevel;
+    pistolDamageRequired = gameData.pistolDamageRequired;
+   
+    //Shotgun Damage
+    shotgunAdditionalDamage = gameData.shotgunAdditionalDamage;
+    shotgunDamageDeposited = gameData.shotgunDamageDeposited;
+    shotgunDamageLevel = gameData.shotgunDamageLevel;
+    shotgunDamageRequired = gameData.shotgunDamageRequired;
+   
+    //Grenade Launcher Damage
+    grenadeLauncherAdditionalDamage = gameData.grenadeLauncherAdditionalDamage;
+    grenadeLauncherDamageDeposited = gameData.grenadeLauncherDamageDeposited;
+    grenadeLauncherDamageLevel = gameData.grenadeLauncherDamageLevel;
+    grenadeLauncherDamageRequired = gameData.grenadeLauncherDamageRequired;
+    
     }
     
     public void SaveGame()
     {
         //save data
-        _localGameData = new GameData(_isFirstTimePlaying, _baseHealth,_healthReserveDeposited, _healthReserveLevel, _pistolBaseDamage, _pistolDamageDeposited, _pistolDamageLevel);
+        Debug.Log($"PISTOL BASE DAMAGE : {pistolAdditionalDamage}");
+        _localGameData = new GameData(isFirstTimePlaying,baseHealth,healthReserveDeposited,healthReserveLevel,healthReserveRequired,pistolAdditionalDamage,pistolDamageDeposited,pistolDamageLevel,pistolDamageRequired,shotgunAdditionalDamage,shotgunDamageDeposited,shotgunDamageLevel,shotgunDamageRequired,grenadeLauncherAdditionalDamage,grenadeLauncherDamageDeposited,grenadeLauncherDamageLevel,grenadeLauncherDamageRequired);
         var playerData = JsonConvert.SerializeObject(_localGameData, new JsonSerializerSettings{ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
         Debug.Log($"{nameof(SaveSystem)}.{nameof(SaveGame)} : {playerData}");
         PlayerPrefs.SetString(SAVE_DATA_KEY, playerData);

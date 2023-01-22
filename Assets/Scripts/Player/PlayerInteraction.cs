@@ -8,11 +8,14 @@ public class PlayerInteraction : MonoBehaviour
     public static event Action InteractedWithEnergy;
     public static event Action InteractedWithWeapon;
     
+    public static event Action PressedEscape;
+    
     [SerializeField] private GameObject _resonateText;
     [SerializeField] private GameObject _weaponText;
 
     private bool _isNearUpgradeStation = false;
     private bool _isNearWeapon = false;
+    
 
     private void Update()
     {
@@ -27,7 +30,12 @@ public class PlayerInteraction : MonoBehaviour
             {
                 InteractedWithWeapon?.Invoke();
             }
+        }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PressedEscape?.Invoke();
+            Debug.Log("esc pressed");
         }
     }
 

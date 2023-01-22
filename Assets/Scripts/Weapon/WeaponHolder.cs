@@ -46,6 +46,7 @@ public class WeaponHolder : MonoBehaviour
     public enum WeaponType
     {
         Pistol,
+        ShotGun,
         GrenadeLauncher
         //add here new weapon type
     }

@@ -108,7 +108,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        _baseMaxHealth = SaveSystem._baseHealth;
+        _baseMaxHealth = SaveSystem.Instance.baseHealth;
         _maxHealth = _baseMaxHealth;
         _currentHealth = _maxHealth;
     }

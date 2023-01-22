@@ -8,16 +8,15 @@ using UnityEngine.UI;
 
 public class PistolDamage : MonoBehaviour, IPointerEnterHandler
 {
-   //must be saved & loaded
-    private int _levelOfUpgrade = 1;
-    public float depositedOrbs;
-    
-    //reset on start
-    
     public static event Action DepositedOrbs;
     
+    ///must be saved & loaded
+    private int _levelOfUpgrade = 1;
+    private float _depositedOrbs;
+    private float _requiredOrbs;
+    
+    //reset on start
     [SerializeField] private TextMeshProUGUI _upgradeNameText;
-    [SerializeField] private TextMeshProUGUI _orbLeftText;
     [SerializeField] private TextMeshProUGUI _requireOrbTextCount;
     [SerializeField] private Image _orbDepositedBar;
     [SerializeField] private int _addedvValue;
@@ -25,22 +24,20 @@ public class PistolDamage : MonoBehaviour, IPointerEnterHandler
     
     [SerializeField] private GameObject pistol;
     
-    
-    
     //description
     public Sprite _icon;
     public string upgradeName;
     [TextArea] public string upgradeDescription;
-    
-    //data
-    public float requiredOrbs;
-    
-    
+
     private void OnEnable()
     {
+        LoadUpgradeData();
+        
         UpdateUpgradeNameText();
         UpdateOrbLeftText();
         UpdateOrbFill();
+        
+        Debug.Log($"{_requiredOrbs}");
     }
     
     public void UpdateUpgradeNameText()
@@ -51,12 +48,12 @@ public class PistolDamage : MonoBehaviour, IPointerEnterHandler
 
     public void UpdateOrbLeftText()
     {
-        _requireOrbTextCount.text = (requiredOrbs - depositedOrbs ).ToString();
+        _requireOrbTextCount.text = (_requiredOrbs - _depositedOrbs ).ToString();
     }
 
     public void UpdateOrbFill()
     {
-        _orbDepositedBar.fillAmount = (depositedOrbs / requiredOrbs);
+        _orbDepositedBar.fillAmount = (_depositedOrbs / _requiredOrbs);
     }
     
     public void UpdateDescription()
@@ -73,28 +70,45 @@ public class PistolDamage : MonoBehaviour, IPointerEnterHandler
     public void DepositOrb()
     {
         if (FindObjectOfType<PlayerStats>().EnergyOrbs == 0) return;
-        depositedOrbs++;
+        _depositedOrbs++;
         
         CheckUpgrades();
         UpdateOrbFill();
         UpdateOrbLeftText();
         DepositedOrbs?.Invoke();
-        SaveSystem._pistolDamageDeposited = (int)depositedOrbs;
-        SaveSystem._pistolDamageLevel = _levelOfUpgrade;
         
+        SaveSystem.Instance.pistolDamageDeposited = (int)_depositedOrbs;
+        SaveSystem.Instance.pistolDamageLevel = _levelOfUpgrade;
+        SaveSystem.Instance.pistolDamageRequired = (int)_requiredOrbs;
+        SaveSystem.Instance.pistolAdditionalDamage = pistol.GetComponent<Pistol>()._additionalDamageUpgrade;
+
     }
     
     public void CheckUpgrades()
     {
-        if (depositedOrbs >= requiredOrbs)
+        if (_depositedOrbs >= _requiredOrbs)
         {
-            pistol.GetComponent<Pistol>()._baseDamage += _addedvValue;
+            ApplyUpgrade();
+            
             _levelOfUpgrade++;
-            requiredOrbs = (int)( requiredOrbs * (_levelOfUpgrade* _multiplier));
-            depositedOrbs = 0;
+            _requiredOrbs = (int)( _requiredOrbs + (_levelOfUpgrade* _multiplier));
+            _depositedOrbs = 0;
             UpdateUpgradeNameText();
             UpdateOrbFill();
             UpdateOrbLeftText();
         }
+    }
+    
+    private void LoadUpgradeData()
+    {
+        _levelOfUpgrade = SaveSystem.Instance.pistolDamageLevel;
+        _depositedOrbs = SaveSystem.Instance.pistolDamageDeposited;
+        _requiredOrbs = SaveSystem.Instance.pistolDamageRequired;
+    }
+    
+    private void ApplyUpgrade()
+    {
+        pistol.GetComponent<Pistol>()._additionalDamageUpgrade += _addedvValue;
+        pistol.GetComponent<Pistol>().localWeapon.damage += _addedvValue;
     }
 }

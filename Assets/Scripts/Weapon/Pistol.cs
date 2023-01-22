@@ -6,16 +6,27 @@ using UnityEngine;
 public class Pistol : MonoBehaviour
 {
     //to save and load
-    public float _baseDamage;
+    public float _additionalDamageUpgrade;
     
     [SerializeField] private Weapon _weaponDefault;
 
-    private Weapon _localWeapon;
+    public Weapon localWeapon;
 
     private void Awake()
     {
-        _baseDamage = SaveSystem._pistolBaseDamage;
-        _weaponDefault.damage = _baseDamage;
+        //gets data from save
+        _additionalDamageUpgrade = SaveSystem.Instance.pistolAdditionalDamage;
+        
+        //puts default weapon data on current weapon data to get unchanged data
+        localWeapon.damage = _weaponDefault.damage;
+        localWeapon.fireRate = _weaponDefault.fireRate;
+        localWeapon.reloadSpeed = _weaponDefault.reloadSpeed;
+        localWeapon.bulletSpeed = _weaponDefault.bulletSpeed;
+        localWeapon.spreadAngle = _weaponDefault.spreadAngle;
+        localWeapon.projectiles = _weaponDefault.projectiles;
+        localWeapon.maxPiercing = _weaponDefault.maxPiercing;
+        localWeapon.knockBackForce = _weaponDefault.knockBackForce;
+        localWeapon.maxAmmo = _weaponDefault.maxAmmo;
     }
 
     private void OnEnable()
@@ -31,19 +42,8 @@ public class Pistol : MonoBehaviour
 
     private void InitializeWeapon()
     {
-        _localWeapon = _weaponDefault;
+        //applies changes from save to the local data
+        localWeapon.damage = _weaponDefault.damage + _additionalDamageUpgrade;
     }
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

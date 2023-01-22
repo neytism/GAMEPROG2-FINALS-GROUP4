@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
-  m_Name: QuickHands
+  m_Name: Hard Shot
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
-  upgradeDescription: 'Reload Speed +20%
+  _icon: {fileID: 0}
+  upgradeDescription: 'Bullet Damage +45%
 
-    Fire Rate +5%'
+    Fire Rate -10%'
   addMaxHealth: 0
   addCurrentHealth: 0
   percentMovementSpeed: 0
   percentPickUpRange: 0
   ChangeBulletType: 0
   addFlatDamage: 0
-  percentDamage: 0
-  percentFireRate: 0.05
-  percentReloadSpeed: 0.2
+  percentDamage: 0.45
+  percentFireRate: -0.1
+  percentReloadSpeed: 0
   percentBulletSpeed: 0
   percentSpreadAngle: 0
   addProjectiles: 0

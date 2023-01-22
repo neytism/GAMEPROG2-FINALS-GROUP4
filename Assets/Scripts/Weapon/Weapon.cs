@@ -11,11 +11,13 @@ public class Weapon : ScriptableObject
     private void OnEnable()
     {
         PlayerHealth.PlayerDeath += ResetWeapon;
+        UserInterfaceManager.ResetWeaponToDefault += ResetWeapon;
     }
 
     private void OnDisable()
     {
         PlayerHealth.PlayerDeath -= ResetWeapon;
+        UserInterfaceManager.ResetWeaponToDefault -= ResetWeapon;
     }
 
     public Sprite _icon;
@@ -50,7 +52,6 @@ public class Weapon : ScriptableObject
         maxPiercing = defaultValues.maxPiercing;
         knockBackForce = defaultValues.knockBackForce;
         maxAmmo = defaultValues.maxAmmo;
-        defaultValues = defaultValues.defaultValues;
     }
 
     public enum BulletType

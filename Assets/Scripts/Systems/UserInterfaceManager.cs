@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class UserInterfaceManager : MonoBehaviour
 {
     public static event Action SaveGamePlsHuHu; 
+    public static event Action PauseEvent; 
+    public static event Action ResumeEvent;
+
+    public static event Action ResetWeaponToDefault; 
 
     [SerializeField] private GameObject _player;
     [SerializeField] private WeaponHolder _weaponHolder;
@@ -39,6 +43,12 @@ public class UserInterfaceManager : MonoBehaviour
     //Game Over Panel
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _lostOrbText;
+    
+    //Pause Menu
+    [SerializeField] private GameObject _pauseMenuPanel;
+    [SerializeField] private GameObject _areYouSureQuitPanel;
+    [SerializeField] private GameObject _areYouSureRestartPanel;
+    private bool _isPaused = false;
     private void OnEnable()
     {
         WeaponHolder.WeaponEquipped += AssignWeapon;
@@ -52,7 +62,11 @@ public class UserInterfaceManager : MonoBehaviour
         WeaponController.UpdateUI += UpdateAmmoCount;
         PlayerEnergyOrbs.UpdateOrbUI += UpdateOrbCount;
         HealthReserves.DepositedOrbs += UpdateOrbCount;
+        PistolDamage.DepositedOrbs += UpdateOrbCount;
+        ShotgunDamage.DepositedOrbs += UpdateOrbCount;
+        GrenadeLauncherDamage.DepositedOrbs += UpdateOrbCount;
         PlayerHealth.PlayerDeath += ShowGameOverPanel;
+        PlayerInteraction.PressedEscape += PauseChecker;
     }
     private void OnDisable()
     {
@@ -67,8 +81,11 @@ public class UserInterfaceManager : MonoBehaviour
         WeaponController.UpdateUI -= UpdateAmmoCount;
         PlayerEnergyOrbs.UpdateOrbUI -= UpdateOrbCount;
         HealthReserves.DepositedOrbs -= UpdateOrbCount;
+        PistolDamage.DepositedOrbs -= UpdateOrbCount;
+        ShotgunDamage.DepositedOrbs -= UpdateOrbCount;
+        GrenadeLauncherDamage.DepositedOrbs -= UpdateOrbCount;
         PlayerHealth.PlayerDeath -= ShowGameOverPanel;
-        //MainGameCamera.NewCamera -= ChangeCameraRenderer;
+        PlayerInteraction.PressedEscape -= PauseChecker;
     }
 
     private void Start()
@@ -132,7 +149,7 @@ public class UserInterfaceManager : MonoBehaviour
         _orbCountText.text = $"{_playerStats.EnergyOrbs} orbs left";
     }
 
-    private void ShowPermaUpgradesPanel()
+    public void ShowPermaUpgradesPanel()
     {
         Time.timeScale = 0f;
         _permaUpgradePanel.SetActive(true);
@@ -161,10 +178,65 @@ public class UserInterfaceManager : MonoBehaviour
     private void ShowGameOverPanel()
     {
         Time.timeScale = 0f;
-        StartCoroutine(WaitForSecondsToReload());
+        StartCoroutine(WaitForSecondsToReload("MainMenu"));
     }
 
-    IEnumerator WaitForSecondsToReload()
+    public void ShowPauseMenu()
+    {
+        Debug.Log("paused");
+        PauseEvent?.Invoke();
+        Time.timeScale = 0f;
+        _pauseMenuPanel.SetActive(true);
+        _isPaused = true;
+    }
+    
+    public void HidePauseMenu()
+    {
+        Debug.Log("resume");
+        ResumeEvent?.Invoke();
+        Time.timeScale = 1f;
+        _pauseMenuPanel.SetActive(false);
+        _isPaused = false;
+    }
+    
+    public void RestartButton()
+    {
+        _areYouSureRestartPanel.SetActive(true);
+    }
+    
+    public void QuitButton()
+    {
+        _areYouSureQuitPanel.SetActive(true);
+    }
+
+    public void SureRestartButton()
+    {
+        Debug.Log("restarted");
+        _pauseMenuPanel.SetActive(false);
+        StartCoroutine(WaitForSecondsToReload("MainGame"));
+    }
+    
+    public void SureQuitButton()
+    {
+        Debug.Log("quit");
+        _pauseMenuPanel.SetActive(false);
+        StartCoroutine(WaitForSecondsToReload("MainMenu"));
+    }
+
+    public void PauseChecker()
+    {
+        if (_isPaused)
+        {
+            HidePauseMenu();
+        }
+        else
+        {
+            ShowPauseMenu();
+        }
+    }
+    
+
+    IEnumerator WaitForSecondsToReload(string scene)
     {
         if (_playerStats.EnergyOrbs > 0)
         {
@@ -175,18 +247,13 @@ public class UserInterfaceManager : MonoBehaviour
         Time.timeScale = 1f;
         ObjectPool.Instance.Dispose(ObjectPool.Instance._objectsPool);
         ObjectPool.Instance._objectsPool.Clear();
-        SceneManager.LoadScene("MainGame");
+        SaveGameData();
+        ResetWeaponToDefault?.Invoke();
+        SceneManager.LoadScene(scene);
         
     }
 
-    private void ChangeCameraRenderer()
-    {
-        Canvas canvas = gameObject.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main;
-    }
-
-    public void SaveGameDate()
+    public void SaveGameData()
     {
         SaveSystem.Instance.SaveGame();
     }

@@ -11,12 +11,18 @@ public class PlayerEnergyOrbs : MonoBehaviour
     {
         Orbs.EnergyOrbCollected += AddEnergyOrb;
         HealthReserves.DepositedOrbs += DeductEnergyOrb;
+        PistolDamage.DepositedOrbs += DeductEnergyOrb;
+        ShotgunDamage.DepositedOrbs += DeductEnergyOrb;
+        GrenadeLauncherDamage.DepositedOrbs += DeductEnergyOrb;
     }
     
     private void OnDisable()
     {
         Orbs.EnergyOrbCollected -= AddEnergyOrb;
         HealthReserves.DepositedOrbs -= DeductEnergyOrb;
+        PistolDamage.DepositedOrbs -= DeductEnergyOrb;
+        ShotgunDamage.DepositedOrbs -= DeductEnergyOrb;
+        GrenadeLauncherDamage.DepositedOrbs -= DeductEnergyOrb;
     }
 
     public void AddEnergyOrb()
