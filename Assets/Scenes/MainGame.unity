@@ -486,6 +486,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9110954507141717263, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
       propertyPath: permanentUpgrades
       value: 
@@ -676,9 +688,10 @@ MonoBehaviour:
   _orbDepositedBar: {fileID: 52853570}
   _addedvValue: 1
   _multiplier: 10
-  _icon: {fileID: 0}
+  _icon: {fileID: 834543214, guid: 5a4f8cde9e4641d4c9861f9095625959, type: 3}
   upgradeName: Health Reserves
   upgradeDescription: Increases Max Health of player.
+  iconEditor: {fileID: 337216147}
 --- !u!1 &70803328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1575,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9110954507141717263, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
       propertyPath: permanentUpgrades
       value: 
@@ -1661,7 +1686,8 @@ MonoBehaviour:
   _addedvValue: 5
   _multiplier: 10
   grenadeLauncher: {fileID: 809034585604645515, guid: 8692f53baf7529144ac3cb8231fde648, type: 3}
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 589df6c6292e8d04fa681b5ec45f20e4, type: 3}
+  _iconEditor: {fileID: 1728015921}
   upgradeName: Grenade Launcher Damage
   upgradeDescription: Increases Grenade Launcher Base Damage
 --- !u!1 &124801504
@@ -1985,7 +2011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &145494840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3781,6 +3807,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.51}
   m_SizeDelta: {x: 122.17, y: 145.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &322222496 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+  m_PrefabInstance: {fileID: 950196384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &337216147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+  m_PrefabInstance: {fileID: 52853568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &342701970 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7597755526157096996, guid: 0743305facf34394abdb28872f7215b2, type: 3}
@@ -4160,6 +4208,18 @@ PrefabInstance:
     - target: {fileID: 5441343882054767737, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9110954507141717263, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
       propertyPath: permanentUpgrades
@@ -6203,9 +6263,10 @@ MonoBehaviour:
   _addedvValue: 5
   _multiplier: 10
   pistol: {fileID: 809034585604645515, guid: 1084d9daba5c7f040a288a64c131ed29, type: 3}
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 890808d14a9959941aa25bfe102b1ded, type: 3}
   upgradeName: Pistol Damage
   upgradeDescription: Increases Pistol Base Damage
+  _iconEditor: {fileID: 920737748}
 --- !u!1001 &616782997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8506,6 +8567,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &920737748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+  m_PrefabInstance: {fileID: 390665216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &922777933
 GameObject:
   m_ObjectHideFlags: 0
@@ -9143,6 +9215,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9110954507141717263, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
       propertyPath: permanentUpgrades
       value: 
@@ -9242,9 +9326,10 @@ MonoBehaviour:
   _addedvValue: 5
   _multiplier: 10
   shotGun: {fileID: 809034585604645515, guid: 1e407b5260ca00143b41d97b38da826d, type: 3}
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 5a5175c1adc12a243b257b017b7e6424, type: 3}
   upgradeName: Shotgun Damage
   upgradeDescription: Increases Shotgun Base Damage
+  iconEditor: {fileID: 322222496}
 --- !u!1 &952460735
 GameObject:
   m_ObjectHideFlags: 0
@@ -9463,7 +9548,6 @@ MonoBehaviour:
   - _button: {fileID: 1638403731}
     _textBox: {fileID: 644064408}
     _iconHolder: {fileID: 555986792}
-  _icons: []
   _upgrades:
   - {fileID: 11400000, guid: 7537a722466092e40b1959adeb6aeb5c, type: 2}
   - {fileID: 11400000, guid: e3c625ab3c3a04445bf3b9acdc795e4a, type: 2}
@@ -15246,6 +15330,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716019013}
   m_CullTransparentMesh: 1
+--- !u!114 &1728015921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591183813695184034, guid: f02445fc5d356e34aaaf6eb643ec51d2, type: 3}
+  m_PrefabInstance: {fileID: 110074964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1752988599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2435455512336031020, guid: ffebfd22ad35d3246b0cb29ade198d73, type: 3}

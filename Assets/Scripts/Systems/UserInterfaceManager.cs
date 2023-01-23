@@ -244,7 +244,7 @@ public class UserInterfaceManager : MonoBehaviour
         SoundManager.Instance.PlayOnce(SoundManager.Sounds.PlayerDeath);
         if (_playerStats.EnergyOrbs > 0)
         {
-            _lostOrbText.text = $"You lost {_playerStats.EnergyOrbs} orbs. sayang tuloy hays";
+            _lostOrbText.text = $"You lost {_playerStats.EnergyOrbs} orbs.";
             _gameOverPanel.SetActive(true);
         }
         yield return new WaitForSecondsRealtime(3f);

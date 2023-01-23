@@ -27,6 +27,7 @@ public class GrenadeLauncherDamage : MonoBehaviour,IPointerEnterHandler
     
     //description
     public Sprite _icon;
+    public Image _iconEditor;
     public string upgradeName;
     [TextArea] public string upgradeDescription;
     
@@ -37,6 +38,12 @@ public class GrenadeLauncherDamage : MonoBehaviour,IPointerEnterHandler
         UpdateUpgradeNameText();
         UpdateOrbLeftText();
         UpdateOrbFill();
+        UpdateUpgradeIcon();
+    }
+    
+    public void UpdateUpgradeIcon()
+    {
+        _iconEditor.sprite = _icon;
     }
     
     public void UpdateUpgradeNameText()

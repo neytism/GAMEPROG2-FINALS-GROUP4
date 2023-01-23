@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: Double Shot
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  _icon: {fileID: -1796274889, guid: b8d69179a92352e40be58f5cf3815997, type: 3}
   upgradeDescription: 'Projectiles +1
 
     Bullet Damage -10%'

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c152f6323f102d042a8bba936aefc623, type: 3}
   m_Name: Power Shot
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: -295706747, guid: b8d69179a92352e40be58f5cf3815997, type: 3}
   upgradeDescription: 'Bullet Damage +35%
 
     Knockback +20%'

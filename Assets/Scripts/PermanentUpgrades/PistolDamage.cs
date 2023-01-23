@@ -28,6 +28,7 @@ public class PistolDamage : MonoBehaviour, IPointerEnterHandler
     public Sprite _icon;
     public string upgradeName;
     [TextArea] public string upgradeDescription;
+    public Image _iconEditor;
 
     private void OnEnable()
     {
@@ -36,8 +37,14 @@ public class PistolDamage : MonoBehaviour, IPointerEnterHandler
         UpdateUpgradeNameText();
         UpdateOrbLeftText();
         UpdateOrbFill();
-        
+        UpdateUpgradeIcon();
+
         Debug.Log($"{_requiredOrbs}");
+    }
+    
+    public void UpdateUpgradeIcon()
+    {
+        _iconEditor.sprite = _icon;
     }
     
     public void UpdateUpgradeNameText()

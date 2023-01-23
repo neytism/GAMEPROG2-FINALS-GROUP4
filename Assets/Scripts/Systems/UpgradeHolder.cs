@@ -11,7 +11,6 @@ public class UpgradeHolder : MonoBehaviour
     public static event Action ShowUpgradePanel;
     
     [SerializeField] private UpgradeSelectionBox[] _upgradeSelectionBoxes;
-    [SerializeField] private Sprite[] _icons;
     [SerializeField] private Upgrades[] _upgrades;
     [SerializeField] private GameObject _holder;
 
@@ -62,7 +61,7 @@ public class UpgradeHolder : MonoBehaviour
             _upgradeSelectionBoxes[i]._textBox.text = _upgrades[usedIndexes[i]].upgradeDescription;
             
             //change icon of upgrade
-            //_upgradeSelectionBoxes[i]._iconHolder.sprite = _upgrades[usedIndexes[i]]._icon;
+            _upgradeSelectionBoxes[i]._iconHolder.sprite = _upgrades[usedIndexes[i]]._icon;
             
             _upgradeSelectionBoxes[i].AssignUpgrade( _upgrades[usedIndexes[i]]);
             _upgradeSelectionBoxes[i]._button.GetComponent<PlayerApplyUpgrades>().upgrade = _upgrades[usedIndexes[i]];

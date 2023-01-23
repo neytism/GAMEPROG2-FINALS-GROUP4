@@ -28,9 +28,9 @@ public class ShotgunDamage : MonoBehaviour,IPointerEnterHandler
     public Sprite _icon;
     public string upgradeName;
     [TextArea] public string upgradeDescription;
-    
-    
-    
+    public Image iconEditor;
+
+
     private void OnEnable()
     {
         LoadUpgradeData();
@@ -38,6 +38,12 @@ public class ShotgunDamage : MonoBehaviour,IPointerEnterHandler
         UpdateUpgradeNameText();
         UpdateOrbLeftText();
         UpdateOrbFill();
+        UpdateUpgradeIcon();
+    }
+    
+    public void UpdateUpgradeIcon()
+    {
+        iconEditor.sprite = _icon;
     }
     
     public void UpdateUpgradeNameText()

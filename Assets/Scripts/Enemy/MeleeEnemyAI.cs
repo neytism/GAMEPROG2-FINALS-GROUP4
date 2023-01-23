@@ -33,7 +33,7 @@ public class MeleeEnemyAI : MonoBehaviour
     
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player")) 
+        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged")) 
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Chase();
