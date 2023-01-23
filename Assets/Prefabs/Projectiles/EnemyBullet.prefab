@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _XPOrb: {fileID: 2970465547972232932, guid: fd99d6cf684f9774a91df44bbe5b9e7d, type: 3}
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 7919915464598023010}
+  _bloodParticle: {fileID: 6361326539378936758, guid: 6d023dff890208746944b51f234993da, type: 3}
 --- !u!50 &-704458574900397343
 Rigidbody2D:
   serializedVersion: 4

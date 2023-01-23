@@ -17,6 +17,7 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private WeaponHolder _weaponHolder;
     private PlayerStats _playerStats;
     private Weapon _weapon;
+    public Animator blackBg;
 
     //XP BAR
     [SerializeField] private Image _XPBar;
@@ -240,7 +241,7 @@ public class UserInterfaceManager : MonoBehaviour
 
     IEnumerator WaitForSecondsToReload(string scene)
     {
-        
+        blackBg.SetTrigger("isDead");
         SoundManager.Instance.PlayOnce(SoundManager.Sounds.PlayerDeath);
         if (_playerStats.EnergyOrbs > 0)
         {

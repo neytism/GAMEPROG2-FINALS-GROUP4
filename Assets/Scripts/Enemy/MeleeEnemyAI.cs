@@ -8,15 +8,19 @@ public class MeleeEnemyAI : MonoBehaviour
     private Transform target;
     private EnemyKnockBack _kb;
 
+
     void OnEnable()
     {
         target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
         _kb = GetComponent<EnemyKnockBack>();
+        Chase();
     }
 
     private void Update()
     {
-        Chase();
+        
+            Chase();
+        
     }
     
     public void Chase() //follow player 
@@ -33,7 +37,7 @@ public class MeleeEnemyAI : MonoBehaviour
     
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged")) 
+        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyBoss")) 
         {
             if (col.gameObject.tag.Equals("Player"))
             {
@@ -43,5 +47,4 @@ public class MeleeEnemyAI : MonoBehaviour
             
         }
     }
-    
 }

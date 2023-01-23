@@ -35,26 +35,46 @@ public class EnemySpawn : MonoBehaviour
     
     IEnumerator GameCycle()
     {
-        StartCoroutine(SpawnRandom(.75f, _enemyMelee,_enemyMelee,_enemyMelee));
-        yield return new WaitForSeconds(75);
-        StopCoroutine(SpawnRandom(.75f, _enemyMelee,_enemyMelee,_enemyMelee));
+        //spawns melee enemy only for 60 secs on .75s interval
+        StartCoroutine(SpawnRandom(.75f, _enemyMelee,_enemyMelee,_enemyMelee));     //start
+        yield return new WaitForSeconds(60);
+        StopCoroutine(SpawnRandom(.75f, _enemyMelee,_enemyMelee,_enemyMelee));      // 1 min
         
-        StartCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));
-        yield return new WaitForSeconds(75);
-        StopCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));
-        
-        StartCoroutine(SpawnRandom(1.5f, _enemyMelee,_enemyRanged,_enemyLongRanged));
-        yield return new WaitForSeconds(75);
-        StopCoroutine(SpawnRandom(1.5f, _enemyMelee,_enemyRanged,_enemyLongRanged));
-        
-        StartCoroutine(SpawnRandom(3f, _enemyRanged,_enemyRanged,_enemyLongRanged));
-        yield return new WaitForSeconds(75);
-        StopCoroutine(SpawnRandom(3f, _enemyRanged,_enemyRanged,_enemyLongRanged));
-        
-        SpawnEnemyObject(_enemyBoss);
-
+        //pause spawning for 30 seconds
         yield return new WaitForSeconds(30);
-        StartCoroutine(GameCycle());
+        //
+        // //spawns 2 random for 60 secs on x interval
+        // StartCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));   //1:30
+        // yield return new WaitForSeconds(60);
+        // StopCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));    //2:30
+        //
+        // //pause spawning for 30 seconds
+        // yield return new WaitForSeconds(30);
+        //
+        SpawnEnemyObject(_enemyBoss);                                                                                           //3:00
+        
+        //pause spawning for 30 seconds
+        yield return new WaitForSeconds(60);
+        
+        StartCoroutine(SpawnRandom(1.5f, _enemyMelee,_enemyRanged,_enemyLongRanged));//4:00
+        yield return new WaitForSeconds(60);
+        StopCoroutine(SpawnRandom(1.5f, _enemyMelee,_enemyRanged,_enemyLongRanged));//5:00
+        
+        //pause spawning for 30 seconds
+        yield return new WaitForSeconds(30);
+        
+        StartCoroutine(SpawnRandom(3f, _enemyRanged,_enemyRanged,_enemyLongRanged));//5:30
+        yield return new WaitForSeconds(60);
+        StopCoroutine(SpawnRandom(3f, _enemyRanged,_enemyRanged,_enemyLongRanged)); //6:30
+        
+        //pause spawning for 30 seconds
+        yield return new WaitForSeconds(60);
+        
+        SpawnEnemyObject(_enemyBoss);                                                                                           //7:30
+        SpawnEnemyObject(_enemyBoss);
+        
+        yield return new WaitForSeconds(60);
+        StartCoroutine(GameCycle());                                                                                       //restarts at 8:30
         
         NewEnemyScycle?.Invoke();
         

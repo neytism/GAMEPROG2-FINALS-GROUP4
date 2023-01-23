@@ -24,6 +24,10 @@ TagManager:
   - WeaponNear
   - PlayerHolder
   - CanvasHUD
+  - ParticleMiniExplosion
+  - ParticleBloodEnemy
+  - ParticleAshEnemy
+  - EnemyBoss
   layers:
   - Default
   - TransparentFX

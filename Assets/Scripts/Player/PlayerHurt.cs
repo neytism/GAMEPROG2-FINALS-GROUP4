@@ -22,7 +22,7 @@ public class PlayerHurt : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if ((col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile") || col.gameObject.tag.Equals("EnemyBullet")) && !_isInvincible)
+        if ((col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile") || col.gameObject.tag.Equals("EnemyBullet")|| col.gameObject.tag.Equals("EnemyBoss")) && !_isInvincible)
         {
             ReduceHealth?.Invoke();
             SoundManager.Instance.PlayOnce(SoundManager.Sounds.PlayerHurt);

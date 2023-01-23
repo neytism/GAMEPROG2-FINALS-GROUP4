@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ReloadBar : MonoBehaviour
 {
     [SerializeField] private Image _reloadBar;
+    [SerializeField] private GameObject _reloadBarFrame;
     
     private float _reloadTime;
     
@@ -29,7 +30,8 @@ public class ReloadBar : MonoBehaviour
     {
         _playerNoAmmo = false;
         _reloadBar.enabled = false;
-        
+        _reloadBarFrame.SetActive(false);
+
     }
 
     private void AssignWeapon()
@@ -46,12 +48,14 @@ public class ReloadBar : MonoBehaviour
                 if (_reloadTime <= _weapon.Weapon.reloadSpeed)
                 {
                     _reloadBar.enabled = true;
+                    _reloadBarFrame.SetActive(true);
                     _reloadTime += Time.deltaTime;
                     _reloadBar.fillAmount = _reloadTime  /  _weapon.Weapon.reloadSpeed;
                 }
             }
             else
             {
+                _reloadBarFrame.SetActive(false);
                 _reloadBar.enabled = false;
                 _reloadTime = 0;
                 _playerNoAmmo = false;

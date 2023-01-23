@@ -82,7 +82,6 @@ public class DebugText : MonoBehaviour
 
 //this script is for debugging
 
-//TODO: Main menu
 //TODO: Generative map
 //TODO: Audio Designing
 //TODO: Graphics

@@ -17,7 +17,8 @@ public class EnemyHurt : MonoBehaviour
     
     [SerializeField] private GameObject _damageText;
     [SerializeField] private Transform _damageTextPos;
-
+    
+    [SerializeField] private GameObject _bloodParticle;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class EnemyHurt : MonoBehaviour
                 
             if(_currenHealth <= 0)
             {
+                ParticleEmit();
                 gameObject.SetActive(false);
                 GetComponent<EnemyDrop>().DropOrbChance();
             }
@@ -67,7 +69,6 @@ public class EnemyHurt : MonoBehaviour
     private void TakeDamage(float damage)
     {
         _currenHealth -= damage;
-        Debug.Log($"{_currenHealth}");
     }
 
     private void ShowDamage(float damage)
@@ -75,6 +76,12 @@ public class EnemyHurt : MonoBehaviour
         GameObject text = ObjectPool.Instance.GetObject(_damageText, _damageTextPos.position);
         text.GetComponent<TextMeshPro>().text = Math.Round(damage).ToString();
         text.SetActive(true);
+    }
+
+    private void ParticleEmit()
+    {
+        GameObject blood = ObjectPool.Instance.GetObject(_bloodParticle, transform.position);
+        blood.SetActive(true);
     }
 
     private void IncreaseEnemyHealth()

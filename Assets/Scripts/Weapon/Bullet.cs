@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject particleObj;
     public int maxPierces;
     public int currentPierces;
     private bool isColliding;
@@ -21,10 +22,13 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile"))
+        if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile") || col.gameObject.tag.Equals("EnemyBoss"))
         {
             if (!isColliding)
             {
+                GameObject particle = ObjectPool.Instance.GetObject(particleObj, transform.position);
+                particle.SetActive(true);
+                
                 isColliding = true;
                 if (currentPierces >= maxPierces)
                 {

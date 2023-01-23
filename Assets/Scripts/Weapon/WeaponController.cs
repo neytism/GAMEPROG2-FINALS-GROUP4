@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class WeaponController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class WeaponController : MonoBehaviour
     
     private float _timeSinceLastFire;
     private float _autoReloadTime = 1.5f;
+    
+    [SerializeField] private GameObject _flash;
     
 
     private void OnEnable()
@@ -69,6 +72,7 @@ public class WeaponController : MonoBehaviour
         if (Time.time < fireTimer + 1f/_weapon.fireRate) return;
 
         SoundManager.Instance.PlayOnce(SoundManager.Sounds.WeaponFire);
+        StartCoroutine(FlashTime());
         InstanceBullet();
         _timeSinceLastFire = 0;
         
@@ -129,6 +133,16 @@ public class WeaponController : MonoBehaviour
         if (axis == Vector3.zero) axis = Vector3.right;
 
         return Quaternion.AngleAxis(angle, axis) * firePoint;
+    }
+
+    IEnumerator FlashTime()
+    {
+        var euler = _flash.transform.eulerAngles;
+        euler.z = Random.Range(0.0f, 360.0f);
+        _flash.transform.eulerAngles = euler;
+        _flash.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        _flash.SetActive(false);
     }
 
 

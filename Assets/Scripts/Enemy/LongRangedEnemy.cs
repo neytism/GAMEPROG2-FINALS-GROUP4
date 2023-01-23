@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LongRangedEnemy : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class LongRangedEnemy : MonoBehaviour
     public float retreatRange;
 
     private float btwShotInterval;
-    public float startBtwShotInterval;
 
     public GameObject projectile;
     private Transform _target;
@@ -32,7 +32,7 @@ public class LongRangedEnemy : MonoBehaviour
         _lineRenderer.SetActive(false);
         _target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
         _kb = GetComponent<EnemyKnockBack>();
-        btwShotInterval = startBtwShotInterval;
+        btwShotInterval = Random.Range(5,20);
     }
 
     void Update()
@@ -78,7 +78,7 @@ public class LongRangedEnemy : MonoBehaviour
         if(btwShotInterval <= 0)
         {
             ShowLaser();
-            btwShotInterval = startBtwShotInterval;  // adds interval between shots
+            btwShotInterval = Random.Range(5,20);;  // adds interval between shots
         } else
         {
             btwShotInterval -= Time.deltaTime;

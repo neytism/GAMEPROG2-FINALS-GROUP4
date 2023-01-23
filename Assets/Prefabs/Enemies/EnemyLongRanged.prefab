@@ -553,6 +553,7 @@ MonoBehaviour:
   _health: 20
   _damageText: {fileID: 6585678763367725670, guid: aca3ff9873360dc4bb6ee1e9cf5505ce, type: 3}
   _damageTextPos: {fileID: 3835979998573273738}
+  _bloodParticle: {fileID: 6361326539378936758, guid: 6d023dff890208746944b51f234993da, type: 3}
 --- !u!114 &585217044413435579
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -12,10 +13,25 @@ public class CameraFollow : MonoBehaviour
     public float shakeDuration;
     private Vector3 tempPos;
     public Vector3 minVal, maxVal;
+    
+    
+    //for camera shake
+    private Vector3 _initialPos;
+    public float shakeRadius;
 
     private void Start()
     {
         target = FindObjectOfType<PlayerMovement>().transform;
+    }
+
+    private void OnEnable()
+    {
+        WeaponController.StartShooting += CameraShake;
+    }
+    
+    private void OnDisable()
+    {
+        WeaponController.StartShooting -= CameraShake;
     }
 
     void FixedUpdate()
@@ -41,5 +57,26 @@ public class CameraFollow : MonoBehaviour
         Vector3 smoothedPos = Vector3.Lerp(transform.position, boundPosition, smoothSpeed * Time.deltaTime);
         transform.position = smoothedPos;
         
+    }
+    
+    private void CameraShake()
+    {
+        StartCoroutine(Shaking());
+    }
+
+    IEnumerator Shaking()
+    {
+        _initialPos = transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            Vector2 shakePos = _initialPos;
+            shakePos += Random.insideUnitCircle.normalized * shakeRadius;
+            transform.position = new Vector3(shakePos.x,shakePos.y,_initialPos.z);
+            yield return null;
+        }
+
     }
 }
