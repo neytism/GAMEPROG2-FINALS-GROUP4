@@ -17,7 +17,7 @@ MonoBehaviour:
 
     Move Speed -15%'
   addMaxHealth: 2
-  addCurrentHealth: 0
+  addCurrentHealth: 2
   percentMovementSpeed: -0.15
   percentPickUpRange: 0
   ChangeBulletType: 0
