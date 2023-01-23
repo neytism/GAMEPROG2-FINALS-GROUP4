@@ -47,59 +47,29 @@ public class PlayerAnimation : MonoBehaviour
 
     private void AnimatePlayerMovement()
     {
-        if (_rigidbody2D.velocity.x < 0 && _rigidbody2D.velocity.y < 0)
+        // Get the direction of the player's movement
+        Vector2 direction = _rigidbody2D.velocity.normalized;
+
+        // Check the direction and set the animation state accordingly
+        if (direction != Vector2.zero)
         {
-            //quadrant 3
-            _sprite.flipX = true;
-           CheckSpeed();
-            
-        }
-        else if (_rigidbody2D.velocity.x > 0 && _rigidbody2D.velocity.y > 0)
-        {
-            //quadrant 1
-            _sprite.flipX = false;
+            _animator.SetBool("isIdle", false);
             CheckSpeed();
-        }
-        else if (_rigidbody2D.velocity.x < 0 && _rigidbody2D.velocity.y > 0)
-        {
-            //quadrant 2
-            _sprite.flipX = true;
-            CheckSpeed();
-        }
-        else if (_rigidbody2D.velocity.x > 0 && _rigidbody2D.velocity.y < 0)
-        {
-            //quadrant 4
-            _sprite.flipX = false;
-            CheckSpeed();
-        }
-        else if (_rigidbody2D.velocity.y > 0)
-        {
-            // up
-            CheckSpeed();
-        }
-        else if (_rigidbody2D.velocity.y < 0)
-        {
-            // down
-            CheckSpeed();
-        }else if (_rigidbody2D.velocity.x < 0)
-        {
-            // left
-            _sprite.flipX = true;
-            CheckSpeed();
-        }
-        else if (_rigidbody2D.velocity.x > 0)
-        {
-            // right
-            _sprite.flipX = false;
-            CheckSpeed();
+            if(direction.x < 0)
+            {
+                _sprite.flipX = true;
+            }
+            else if(direction.x > 0)
+            {
+                _sprite.flipX = false;
+            }
         }
         else
         {
-            //not moving
+            _animator.SetBool("isIdle", true);
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isRunning", false);
         }
-
     }
 
     private void CheckSpeed()

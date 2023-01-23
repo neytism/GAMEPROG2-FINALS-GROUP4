@@ -17,6 +17,7 @@ public class MeleeEnemyAI : MonoBehaviour
     private void Update()
     {
         Chase();
+        ClampVelocity();
     }
     
     public void Chase() //follow player 
@@ -35,8 +36,17 @@ public class MeleeEnemyAI : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged")) 
         {
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Chase();
         }
+    }
+    
+    void ClampVelocity()
+    {
+        float maxVelocity = 5f;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Vector2 velocity = rb.velocity;
+        velocity.x = Mathf.Clamp(velocity.x, -maxVelocity, maxVelocity);
+        velocity.y = Mathf.Clamp(velocity.y, -maxVelocity, maxVelocity);
+        rb.velocity = velocity;
     }
 }
