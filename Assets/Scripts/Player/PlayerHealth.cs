@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static event Action UpdateHealthUI;
     public static event Action PlayerDeath;
+
+    
     
     private PlayerStats _playerStats;
     private PlayerHurt _playerHurt;

@@ -9,8 +9,7 @@ using UnityEngine.UI;
 public class UserInterfaceManager : MonoBehaviour
 {
     public static event Action SaveGamePlsHuHu; 
-    public static event Action PauseEvent; 
-    public static event Action ResumeEvent;
+    public static event Action KillSelf;
 
     public static event Action ResetWeaponToDefault; 
 
@@ -178,13 +177,12 @@ public class UserInterfaceManager : MonoBehaviour
     private void ShowGameOverPanel()
     {
         Time.timeScale = 0f;
-        StartCoroutine(WaitForSecondsToReload("MainMenu"));
+        StartCoroutine(WaitForSecondsToReload("MainGame"));
     }
 
     public void ShowPauseMenu()
     {
         Debug.Log("paused");
-        PauseEvent?.Invoke();
         Time.timeScale = 0f;
         _pauseMenuPanel.SetActive(true);
         _isPaused = true;
@@ -193,7 +191,6 @@ public class UserInterfaceManager : MonoBehaviour
     public void HidePauseMenu()
     {
         Debug.Log("resume");
-        ResumeEvent?.Invoke();
         Time.timeScale = 1f;
         _pauseMenuPanel.SetActive(false);
         _isPaused = false;
@@ -213,6 +210,7 @@ public class UserInterfaceManager : MonoBehaviour
     {
         Debug.Log("restarted");
         _pauseMenuPanel.SetActive(false);
+        KillSelf?.Invoke();
         StartCoroutine(WaitForSecondsToReload("MainGame"));
     }
     
@@ -220,6 +218,7 @@ public class UserInterfaceManager : MonoBehaviour
     {
         Debug.Log("quit");
         _pauseMenuPanel.SetActive(false);
+        KillSelf?.Invoke();
         StartCoroutine(WaitForSecondsToReload("MainMenu"));
     }
 

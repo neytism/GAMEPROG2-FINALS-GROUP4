@@ -10,6 +10,7 @@ public class WeaponInteract : MonoBehaviour
     public GameObject[] weapons;
     public static GameObject weapon;
     public GameObject weaponShadow;
+    public GameObject spawner;
     private int randomIndex;
 
     private void Awake()
@@ -41,6 +42,7 @@ public class WeaponInteract : MonoBehaviour
     {
         ObjectPool.Instance.Dispose(ObjectPool.Instance._objectsPool);
         ObjectPool.Instance._objectsPool.Clear();
+        spawner.SetActive(true);
         WeaponCollected?.Invoke(weapon);
         DeactivateWeapon();
     }

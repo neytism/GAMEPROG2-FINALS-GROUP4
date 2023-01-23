@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats _playerStats;
     private PlayerHurt _playerHurt;
     private float _moveSpeed;
+
+    public bool isWalking;
+    public bool isRunning = true;
     
 
     [SerializeField] private Rigidbody2D _rb;
     private Vector2 _moveDirection;
+    
 
     private void OnEnable()
     {
@@ -33,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         _playerStats = GetComponent<PlayerStats>();
         _playerHurt = GetComponent<PlayerHurt>();
         _moveSpeed = _playerStats.RunningSpeed;
+        isRunning = true;
     }
 
     void Update()
@@ -59,15 +64,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetWalkingSpeed()
     {
-        //Player slows down if shooting
         _moveSpeed = _playerStats.WalkingSpeed;
+        isWalking = true;
+        isRunning = false;
     }
     
     public void SetRunningSpeed()
     {
         //sets default speed if not shooting
         _moveSpeed = _playerStats.RunningSpeed;
+        isWalking = false;
+        isRunning = true;
     }
+    
+    
 
 
     

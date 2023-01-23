@@ -12,16 +12,28 @@ public class EnemyHurt : MonoBehaviour
     private Weapon _weapon;
     private Weapon _tempWeapon;
     [SerializeField] private float _health;
+    private float _tempHealth;
     private float _currenHealth;
     
     [SerializeField] private GameObject _damageText;
     [SerializeField] private Transform _damageTextPos;
 
 
+    private void Awake()
+    {
+        _tempHealth = _health;
+    }
+
     private void OnEnable()
     {
-        _currenHealth = _health;
+        _currenHealth = _tempHealth;
         _weapon = WeaponHolder.selectedWeapon;
+        EnemySpawn.NewEnemyScycle += IncreaseEnemyHealth;
+    }
+
+    private void OnDisable()
+    {
+        EnemySpawn.NewEnemyScycle -= IncreaseEnemyHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -62,6 +74,11 @@ public class EnemyHurt : MonoBehaviour
         GameObject text = ObjectPool.Instance.GetObject(_damageText, _damageTextPos.position);
         text.GetComponent<TextMeshPro>().text = Math.Round(damage).ToString();
         text.SetActive(true);
+    }
+
+    private void IncreaseEnemyHealth()
+    {
+        _tempHealth = _tempHealth * 2;
     }
 
     

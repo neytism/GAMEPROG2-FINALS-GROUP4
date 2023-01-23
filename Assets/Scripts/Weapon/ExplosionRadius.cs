@@ -6,12 +6,20 @@ public class ExplosionRadius : MonoBehaviour
 {
     private void OnEnable()
     {
-        StartCoroutine(RadiusLife(gameObject));
+        GetComponent<CircleCollider2D>().enabled = true;
+        StartCoroutine(ColliderLife());
     }
     
     IEnumerator RadiusLife(GameObject explosionRadius)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1.5f);
         explosionRadius.SetActive(false);
+    }
+
+    IEnumerator ColliderLife()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<CircleCollider2D>().enabled = false;
+        StartCoroutine(RadiusLife(gameObject));
     }
 }

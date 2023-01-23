@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5608bd4f67facad4496bd63a53e38e88, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 76beef9fdae7b48468ddf07d0400a374, type: 3}
+  _icon: {fileID: 21300000, guid: 5a5175c1adc12a243b257b017b7e6424, type: 3}
   weaponName: Shotgun
   bulletType: 0
   damage: 8
@@ -21,8 +21,8 @@ MonoBehaviour:
   bulletSpeed: 20
   spreadAngle: 5
   projectiles: 3
-  maxPiercing: 1
+  maxPiercing: 0
   knockBackForce: 2
   maxAmmo: 3
-  currentAmmo: 2
+  currentAmmo: 3
   defaultValues: {fileID: 11400000, guid: 811e77da2145ecd479c067618481f5f4, type: 2}

@@ -131,7 +131,7 @@ public class LongRangedEnemy : MonoBehaviour
 
     private void ChangeLaserLength()
     {
-        Vector3 endPos = _lineRenderer.transform.position + (_lineRenderer.transform.right * _distanceToPlayer);
+        Vector3 endPos = _lineRenderer.transform.position + (_lineRenderer.transform.right * (_distanceToPlayer - 0.5f));
         _lineRenderer.GetComponent<LineRenderer>().SetPositions(new Vector3[] {_lineRenderer.transform.position,endPos});
     }
 }
