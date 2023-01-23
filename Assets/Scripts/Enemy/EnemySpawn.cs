@@ -42,15 +42,15 @@ public class EnemySpawn : MonoBehaviour
         
         //pause spawning for 30 seconds
         yield return new WaitForSeconds(30);
-        //
-        // //spawns 2 random for 60 secs on x interval
-        // StartCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));   //1:30
-        // yield return new WaitForSeconds(60);
-        // StopCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));    //2:30
-        //
-        // //pause spawning for 30 seconds
-        // yield return new WaitForSeconds(30);
-        //
+        
+        //spawns 2 random for 60 secs on x interval
+        StartCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));   //1:30
+        yield return new WaitForSeconds(60);
+        StopCoroutine(SpawnRandom(1.25f, _enemyMelee,_enemyMelee,_enemyRanged));    //2:30
+        
+        //pause spawning for 30 seconds
+        yield return new WaitForSeconds(30);
+        
         SpawnEnemyObject(_enemyBoss);                                                                                           //3:00
         
         //pause spawning for 30 seconds
