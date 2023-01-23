@@ -8,7 +8,7 @@ public class MeleeEnemyAI : MonoBehaviour
     private Transform target;
     private EnemyKnockBack _kb;
 
-    void Start()
+    void OnEnable()
     {
         target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
         _kb = GetComponent<EnemyKnockBack>();

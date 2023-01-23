@@ -43,6 +43,7 @@ public class WeaponInteract : MonoBehaviour
         ObjectPool.Instance.Dispose(ObjectPool.Instance._objectsPool);
         ObjectPool.Instance._objectsPool.Clear();
         spawner.SetActive(true);
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.GunReady);
         WeaponCollected?.Invoke(weapon);
         DeactivateWeapon();
     }

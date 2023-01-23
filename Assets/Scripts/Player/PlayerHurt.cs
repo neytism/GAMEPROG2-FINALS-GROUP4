@@ -25,6 +25,7 @@ public class PlayerHurt : MonoBehaviour
         if ((col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("EnemyRanged") || col.gameObject.tag.Equals("EnemyLongRanged") || col.gameObject.tag.Equals("EnemyProjectile") || col.gameObject.tag.Equals("EnemyBullet")) && !_isInvincible)
         {
             ReduceHealth?.Invoke();
+            SoundManager.Instance.PlayOnce(SoundManager.Sounds.PlayerHurt);
             KnockBack(col.gameObject.GetComponent<Transform>());
         }
     }

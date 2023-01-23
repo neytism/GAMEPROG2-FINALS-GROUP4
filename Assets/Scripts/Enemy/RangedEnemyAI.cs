@@ -15,7 +15,7 @@ public class RangedEnemyAI : MonoBehaviour
     private Transform _target;
     private EnemyKnockBack _kb;
 
-    void Start()
+    void OnEnable()
     {
         _target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
         _kb = GetComponent<EnemyKnockBack>();

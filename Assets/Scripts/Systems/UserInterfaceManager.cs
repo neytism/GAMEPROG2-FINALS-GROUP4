@@ -89,6 +89,8 @@ public class UserInterfaceManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.PlayLoop(SoundManager.Sounds.GameBGM);
+        SoundManager.Instance.PlayFadeIn(SoundManager.Sounds.GameBGM,0.005f, .5f);
         _playerStats = _player.GetComponent<PlayerStats>();
         _XPBar.fillAmount = 0;
         UpdateHealthBar();
@@ -204,6 +206,7 @@ public class UserInterfaceManager : MonoBehaviour
     public void QuitButton()
     {
         _areYouSureQuitPanel.SetActive(true);
+        SoundManager.Instance.StopPlayingBGM(SoundManager.Sounds.GameBGM);
     }
 
     public void SureRestartButton()
@@ -237,6 +240,8 @@ public class UserInterfaceManager : MonoBehaviour
 
     IEnumerator WaitForSecondsToReload(string scene)
     {
+        
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.PlayerDeath);
         if (_playerStats.EnergyOrbs > 0)
         {
             _lostOrbText.text = $"You lost {_playerStats.EnergyOrbs} orbs. sayang tuloy hays";

@@ -19,6 +19,10 @@ public class WeaponController : MonoBehaviour
     
     private bool reloading;
     private float fireTimer;
+    
+    private float _timeSinceLastFire;
+    private float _autoReloadTime = 1.5f;
+    
 
     private void OnEnable()
     {
@@ -32,6 +36,17 @@ public class WeaponController : MonoBehaviour
         PlayerShoot.shoot -= Fire;
     }
 
+    private void Update()
+    {
+        //auto reload after _autoReloadTime seconds
+        _timeSinceLastFire += Time.deltaTime;
+        if (_timeSinceLastFire >= _autoReloadTime && _weapon.currentAmmo < _weapon.maxAmmo && !reloading)
+        {
+            Reload();
+            _timeSinceLastFire = 0;
+        }
+    }
+
     public Weapon Weapon => _weapon;
     public bool isReloading => reloading;
     
@@ -39,9 +54,10 @@ public class WeaponController : MonoBehaviour
 
     public void Fire()
     {
-        
+        //will not fire if reloading
         if(reloading) return;
         StartShooting?.Invoke();
+        
         UpdateUI?.Invoke();
         
         if(_weapon.currentAmmo <= 0)
@@ -52,9 +68,13 @@ public class WeaponController : MonoBehaviour
         
         if (Time.time < fireTimer + 1f/_weapon.fireRate) return;
 
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.WeaponFire);
         InstanceBullet();
+        _timeSinceLastFire = 0;
+        
 
         _weapon.currentAmmo--;
+        
         fireTimer = Time.time;
         
     }
@@ -64,17 +84,25 @@ public class WeaponController : MonoBehaviour
         WeaponReload?.Invoke();
         if(_weapon.currentAmmo == _weapon.maxAmmo) return;
         reloading = true;
-        
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.ReloadStart);
         StartCoroutine(ReloadCoroutine());
     }
-
+    
     private IEnumerator ReloadCoroutine()
     {
-        //can put here animation for reloading
-        
-        yield return new WaitForSeconds(_weapon.reloadSpeed);
-        _weapon.currentAmmo = _weapon.maxAmmo;
-        UpdateUI?.Invoke();
+        //animation for reloading
+
+        int ammoToReload = _weapon.maxAmmo - _weapon.currentAmmo;
+        float reloadInterval = _weapon.reloadSpeed / ammoToReload;
+
+        for (int i = 0; i < ammoToReload; i++)
+        {
+            yield return new WaitForSeconds(reloadInterval);
+            SoundManager.Instance.PlayOnce(SoundManager.Sounds.ReloadContinue);
+            _weapon.currentAmmo++;
+            UpdateUI?.Invoke();
+        }
+
         reloading = false;
     }
 

@@ -306,14 +306,28 @@ MonoBehaviour:
   SoundBGMusic: {fileID: 632339637222302506}
   sounds:
   - soundType: 0
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 4e530888996cea843be744a800078038, type: 3}
   - soundType: 1
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: b8f89e5f3143ace44952f95e0082e416, type: 3}
   - soundType: 2
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 1033db6a380e8604f8c4694c19340bb6, type: 3}
   - soundType: 3
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: b463cf9a06baa574b85f5f8fde434426, type: 3}
   - soundType: 4
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: e19521da7671c10449e9ed8dcbc12b50, type: 3}
   - soundType: 5
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 03f1f6690e9aa064ea973eb11ff604f4, type: 3}
+  - soundType: 6
+    soundClip: {fileID: 8300000, guid: 31729846a3987144fab3eb0a071e6a23, type: 3}
+  - soundType: 7
+    soundClip: {fileID: 8300000, guid: cd211ae1f676895439c671488dffdbc1, type: 3}
+  - soundType: 8
+    soundClip: {fileID: 8300000, guid: 3cbe6e67d7c31c3478ef85e1c8d94ee5, type: 3}
+  - soundType: 9
+    soundClip: {fileID: 8300000, guid: 181611c354840fa44930896fc9f497e3, type: 3}
+  - soundType: 10
+    soundClip: {fileID: 8300000, guid: 4fd0053c541704f46a43041cafed4afa, type: 3}
+  - soundType: 12
+    soundClip: {fileID: 8300000, guid: f9c5911076aab65499f3798d94cee1d4, type: 3}
+  - soundType: 13
+    soundClip: {fileID: 8300000, guid: ecf70bf3d4942804281f59497991197a, type: 3}

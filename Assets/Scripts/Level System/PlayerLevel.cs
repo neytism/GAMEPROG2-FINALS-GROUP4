@@ -30,6 +30,7 @@ public class PlayerLevel : MonoBehaviour
     public void IncreaseLevel()
     {
         _playerStats.Level++;
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.LevelUp);
         LevelUp?.Invoke();
         UpdateLevelTextUI?.Invoke(_playerStats.Level);
         _playerStats.ExperienceRequired = _levelScaling.CalculateRequiredExp(_playerStats.Level);

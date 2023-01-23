@@ -68,7 +68,7 @@ public class EnemySpawn : MonoBehaviour
         list[0]= enemyspawn1;
         list[1]= enemyspawn2;
         list[2]= enemyspawn3;
-        SpawnEnemyObject(list[(int)Random.Range(0f,2f)]);
+        SpawnEnemyObject(list[(int)Random.Range(0f,3f)]);
         StartCoroutine(SpawnRandom(interval,enemyspawn1,enemyspawn2,enemyspawn3));  //loops
     }
 

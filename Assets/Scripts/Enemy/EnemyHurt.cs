@@ -44,6 +44,7 @@ public class EnemyHurt : MonoBehaviour
             _isHit = true;
             
             TakeDamage(_weapon.damage);
+            SoundManager.Instance.PlayOnce(SoundManager.Sounds.EnemyHit);
                 
             if(_currenHealth <= 0)
             {

@@ -26,13 +26,10 @@ public class LongRangedEnemy : MonoBehaviour
     [SerializeField] private GameObject _lineRenderer;
     private float _laserLength;
     
-    private void OnEnable()
+
+    void OnEnable()
     {
         _lineRenderer.SetActive(false);
-    }
-
-    void Start()
-    {
         _target = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
         _kb = GetComponent<EnemyKnockBack>();
         btwShotInterval = startBtwShotInterval;

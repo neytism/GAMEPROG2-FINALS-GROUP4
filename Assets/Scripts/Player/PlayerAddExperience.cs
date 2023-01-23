@@ -24,6 +24,8 @@ public class PlayerAddExperience : LevelScaling
     }
     private void AddExperience(float experience)
     {
+        
+        SoundManager.Instance.PlayOnce(SoundManager.Sounds.XPCollect);
         UpdateExperienceUI?.Invoke(experience);
         Debug.Log($"XP: {_playerStats.Experience} / {_playerStats.ExperienceRequired}");
         if (_playerStats.Experience >= _playerStats.ExperienceRequired)

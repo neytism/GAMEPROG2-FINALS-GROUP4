@@ -33,12 +33,16 @@ public class Orbs : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("PickUpTrigger"))
         {
+            
+           
             if (this.gameObject.tag.Equals("Experience"))
             {
+                SoundManager.Instance.PlayOnce(SoundManager.Sounds.XPCollect);
                 ExperienceCollected?.Invoke(xpAmount);
                 gameObject.GetComponent<TrailRenderer>().Clear();
             } else if (this.gameObject.tag.Equals("EnergyOrb"))
             {
+                SoundManager.Instance.PlayOnce(SoundManager.Sounds.EnergyOrbCollect);
                 EnergyOrbCollected?.Invoke();
             }
             
