@@ -11,9 +11,9 @@ public class LevelScaling : MonoBehaviour
     [Header("Multiplier")]
     [Range(0f, 300f)]
     public float additionMultiplier = 300;
-    [Range(2f, 4f)]
+    [Range(0f, 4f)]
     public float powerMultiplier = 2;
-    [Range(5f, 14f)]
+    [Range(0f, 14f)]
     public float divisionMultiplier = 7;
 
 

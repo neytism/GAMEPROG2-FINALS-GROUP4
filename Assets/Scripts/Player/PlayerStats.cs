@@ -11,9 +11,7 @@ public class PlayerStats : MonoBehaviour
     
     //must reset
     [SerializeField] private int _maxHealth;
-    
 
-   
 
     [SerializeField] private int _currentHealth;
     [SerializeField] private float _movementSpeed;
